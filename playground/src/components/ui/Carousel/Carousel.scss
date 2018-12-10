@@ -1,0 +1,132 @@
+#choiceCarousel {
+  position: relative;
+  width: 80%;
+  margin: 60px auto;
+
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    margin-top: -33.5px;
+    height: 67px;
+    width: 68px;
+    text-align: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.right {
+      right: -68px;
+
+      img {
+        transform: rotate(180deg);
+      }
+    }
+
+    &.left {
+      left: -68px;
+    }
+  }
+
+  .carousel-indicators {
+    position: absolute;
+    bottom: -26px;
+    width: 100%;
+    text-align: center;
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 100px;
+      background: #efefef;
+    }
+  }
+
+  .carousel-inner {
+    position: relative;
+    overflow: hidden;
+
+    .item {
+      display: none;
+      position: relative;
+      transition: .6s ease-in-out left;
+
+      &.next {
+        position: absolute;
+        display: block;
+        top: 0;
+        width: 100%;
+        left: 0;
+
+        &.left {
+          animation: slidein-left 1s;
+        }
+
+        &.right {
+          animation: slidein-right 1s;
+        }
+      }
+
+      &.active {
+        display: block;
+
+        &.left {
+          left: -100%;
+          animation: slideout-left 1s;
+        }
+
+        &.right {
+          left: 100%;
+          animation: slideout-right 1s;
+        }
+      }
+
+      img {
+        display: block;
+        height: auto;
+        max-width: 100%;
+        width: 100%;
+        line-height: 1;
+      }
+    }
+  }
+}
+
+@keyframes slideout-left {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+@keyframes slidein-left {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slideout-right {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes slidein-right {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}
