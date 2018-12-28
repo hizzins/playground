@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { ListPage, CarouselPage, NotFoundPage } from 'pages';
+import { ListPage, CarouselPage, FileUploaderPage, NotFoundPage } from 'pages';
 import { PageTemplate } from 'components/common';
 
 const App = () => {
@@ -12,6 +12,7 @@ const App = () => {
         <Route path='/page/:page' component={ListPage} />
         <Route path='/tag/:tag/:page?' component={ListPage} />
         <Route path='/carousel' component={CarouselPage} />
+        <Route path='/file-uploader' component={FileUploaderPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

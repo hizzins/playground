@@ -7,6 +7,7 @@ const Header = () => (
     <div>
       <Link to="/">Hizzins</Link>
       <Link to="/carousel">Carousel</Link>
+      <Link to="/file-uploader">File Uploader</Link>
     </div>
   </header>
 );
