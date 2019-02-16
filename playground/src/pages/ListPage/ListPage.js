@@ -1,10 +1,18 @@
 import React from 'react';
+import {Link} from "react-router-dom";
+import './ListPage.scss';
 
 const ListPage = () => {
   return (
-    <div>
-      <h2>hizzin's UI library</h2>
-      <a href="/carousel">Carousel</a>
+    <div className="wrap-main">
+      <div className="menu">
+        <Link to="/carousel">Carousel</Link>
+        <Link to="/file-uploader">File Uploader</Link>
+      </div>
+      <div className="footer">
+        REF
+        <a href="https://material.io/tools/icons/?style=baseline"> - https://material.io/tools/icons/?style=baseline</a>
+      </div>
     </div>
   )
 };

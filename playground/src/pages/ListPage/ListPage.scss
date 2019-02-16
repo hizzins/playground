@@ -1,9 +1,6 @@
-@import 'variables.scss';
-
-.header {
-  padding: 5px;
-  font-size: 36px;
-  font-weight: bold;
+.wrap-main {
+  padding: 30px;
+  min-height: calc(100vh - 64px);
   color: #fff;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,62c4f9+0,46c9a4+100 */
   background: #1e5799; /* Old browsers */
@@ -12,12 +9,17 @@
   background: linear-gradient(to right, #1e5799 0%,#62c4f9 0%,#46c9a4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#46c9a4',GradientType=1 ); /* IE6-9 */
 
-  a {
-    padding: 0 10px;
-    border-left: 1px solid #fff;
+  .menu {
+    min-height: calc(100vh - 184px);
 
-    &:first-child {
-      border-left: 0;
+    a {
+      padding: 3px 10px;
+      margin-right: 10px;
+      border: 1px solid #efefef;
+      border-radius: 50px;
     }
+  }
+  .footer {
+    height: 60px;
   }
 }
