@@ -5,9 +5,7 @@ import './Header.scss';
 const Header = () => (
   <header className="header">
     <div>
-      <Link to="/">Hizzins</Link>
-      <Link to="/carousel">Carousel</Link>
-      <Link to="/file-uploader">File Uploader</Link>
+      <Link to="/">hizzin's UI library</Link>
     </div>
   </header>
 );

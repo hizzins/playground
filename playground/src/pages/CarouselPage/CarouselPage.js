@@ -3,7 +3,7 @@ import { Carousel } from 'components';
 
 const CarouselPage = () => {
   return (
-    <div>
+    <div className="page">
       <Carousel />
     </div>
   )
