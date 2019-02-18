@@ -263,9 +263,9 @@ module.exports = {
             test: /\.scss$/,
             loader: ExtractTextPluginCSS.extract(
               Object.assign(
+
                 {
                   fallback: require.resolve('style-loader'),
-                  },
                   use: [
                     {
                       loader: require.resolve('css-loader'),
@@ -300,7 +300,7 @@ module.exports = {
                     {
                       loader: require.resolve('sass-loader'),
                       options: {
-                        includePaths: [paths.globalStyles]
+                        sourceMap: true
                       }
                     }
                   ],
@@ -338,9 +338,6 @@ module.exports = {
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
     new InterpolateHtmlPlugin(env.raw),
-    new webpack.ProvidePlugin({
-      'window.Quill': 'quill'
-    })
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
