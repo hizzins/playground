@@ -1,9 +1,10 @@
 import React from 'react';
-import { Carousel } from 'components';
+import { Carousel, CarouselGroup } from 'components';
 
 const CarouselPage = () => {
   return (
     <div className="page">
+      <CarouselGroup />
       <Carousel />
     </div>
   )
