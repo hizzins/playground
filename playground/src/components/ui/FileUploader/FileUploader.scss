@@ -1,26 +1,22 @@
 /*!
  *
- * Meeting - Toast.scss
- *
- * IMPORTANT NOTE: This file is licensed only for use in providing the RSUPPORT services,
- *
- * @license Copyright (c) RSUPPORT CO., LTD. (http://www.rsupport.com/)
- * @author Front-End Team | Shin Heejin (hjshin@rsupport.com)
+ * FileUploader.scss
+ * @author Shin Heejin (hizzin413@gmail.com)
  */
 
 #wrap-fileupload {
-  position: relative;
-  overflow: hidden;
-  width: 424px;
-  padding: 2px;
-  color: #dedddd;
+
   text-align: center;
-  border: 2px solid #eceaea;
-  border-radius: 15px;
 
   .wrap-viewer {
+    position: relative;
+    overflow: hidden;
     min-height: 100px;
-    //border: 1px solid blue;
+    width: 424px;
+    padding: 2px;
+    color: #dedddd;
+    border: 2px solid #eceaea;
+    border-radius: 15px;
 
     .file-drop-area {
       position: absolute;
@@ -32,7 +28,7 @@
       //border: 1px solid red;
     }
 
-    .file-viewer-area{
+    .file-viewer-area {
       position: absolute;
       top: 0;
       left: 0;
@@ -51,36 +47,45 @@
     }
   }
 
-  .wrap-thumbnail {
-    .file-thumbnail {
-      position: relative;
-      float: left;
+  .wrap-file {
+    display: flex;
+    align-items: center;
+    width: 424px;
+    margin-bottom: 1px;
+    background-color: #504d4d;
+    border-radius: 10px;
+    color: #fff;
+
+    .file-name {
+      overflow: hidden;
+      flex-grow: 1;
       width: 100px;
-      height: 100px;
+      height: 30px;
+      padding-left: 10px;
       margin: 2px;
-      border-radius: 6px;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-      background-color: #b1afaf;
-      border: 1px solid #efefef;
-      //border: 1px solid green;
-
-      .close {
-        .material-icons {
-          position: absolute;
-          top: 5px;
-          right: 2px;
-          font-size: 20px;
-          font-weight: bold;
-          line-height: 13px;
-          text-align: center;
-          cursor: pointer;
-          color: #fff;
-        }
-
-      }
+      text-align: left;
+      line-height: 30px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
      }
+
+    .file-size {
+      padding: 0 10px;
+    }
+
+    .close {
+      height: 24px;
+      margin-right: 5px;
+
+      .material-icons {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+      }
+
+    }
   }
 
 }

@@ -1,12 +1,13 @@
 import React from 'react';
-import { FileUploader } from 'components';
+import { BannerImageUploader, FileUploader } from 'components';
 import MaterialIcon, {colorPalette} from 'material-icons-react';
 import './FileUploaderPage.scss';
 
 const FileUploaderPage = () => {
   return (
     <div className="page file-uploader-page">
-      <FileUploader />
+      <FileUploader /><hr />
+      <BannerImageUploader />
       <h4>Features</h4>
       <ul>
         <li><MaterialIcon icon="check" size={12} /> multiple upload</li>

@@ -73,7 +73,7 @@ class CarouselGroup extends Component {
         <div className="channel-list" data-is-full="true" data-is-open-room="true" data-is-lock="false">
             <article className="channel-item full">
               <div className="channel-item-inner-wrap">
-                <h2>마우스를 올려보세요.</h2>
+                <h2>작업중입니다.</h2>
               </div>
             </article>
 
