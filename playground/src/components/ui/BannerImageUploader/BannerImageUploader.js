@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import MaterialIcon from 'material-icons-react';
-import './FileUploader.scss';
+import MaterialIcon, {colorPalette} from 'material-icons-react';
+import './BannerImageUploader.scss';
 
-class FileUploader extends Component {
+class BannerImageUploader extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { files: new Map() };
+    this.state = {thumbnails: new Map()};
     this.fileKey = 0;
     this.maxFileSize = 1048576 * 30;
     this.formData = new FormData();
@@ -60,11 +60,14 @@ class FileUploader extends Component {
     const fileReader = e.target;
     const fileData = fileReader.result;
     const { handleGetMimeType } = this;
-    const { files } = this.state;
-    const uploadedFile = fileReader.uploadedFile;
+    const { thumbnails } = this.state;
 
-    const willAddState = new Map().set(this.fileKey, uploadedFile);
-    const newState = [...files, ...willAddState];
+    const arrayBufferView = new Uint8Array( fileData );
+    const blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
+    const urlCreator = window.URL || window.webkitURL;
+    const imageUrl = urlCreator.createObjectURL( blob );
+    const willAddState = new Map().set(this.fileKey, imageUrl);
+    const newState = [...thumbnails, ...willAddState];
 
     var fileArr = (new Uint8Array(fileData)).subarray(0, 4);
     var header = '';
@@ -75,32 +78,35 @@ class FileUploader extends Component {
       header += fileArr[i].toString(16);
     }
 
-    // const mimeType = handleGetMimeType(header);
+    const mimeType = handleGetMimeType(header);
 
-    // if (mimeType !== 'image/png' && mimeType !== 'image/gif' && mimeType !== 'image/jpeg') {
-    //   alert('이미지파일만 업로드 됩니다.(jpg, png, gif)');
-    // } else {
-      console.log('+++여기', this.state);
-      this.setState({ files: new Map(newState)}, () => { console.log('상태변경', this.state);});
+    if (mimeType !== 'image/png' && mimeType !== 'image/gif' && mimeType !== 'image/jpeg') {
+      alert('이미지파일만 업로드 됩니다.(jpg, png, gif)');
+    } else {
+      this.setState({thumbnails: new Map(newState)}, () => { console.log('상태변경', this.state);});
       this.fileKey++;
-    // }
+    }
 
     this.fileUploader.value = '';
   }
 
   handleError = (e) => {
     console.log('++++handleError');
-    if (e.target.error.name == 'NotReadableError') {
+    if(e.target.error.name == 'NotReadableError') {
       // The file could not be read
     }
   }
 
   handleDelete = (e, key) => {
     console.log('handleDelete', e, key);
+    const { handleRevokeObjectURL } = this;
     // state copy
-    const filesMap = new Map(this.state.files);
-    filesMap.delete(key);
-    this.setState({files: filesMap});
+    const thumbnailsMap = new Map(this.state.thumbnails);
+    // 메모리 해제
+    handleRevokeObjectURL(thumbnailsMap.get(key));
+    thumbnailsMap.delete(key);
+    // delete this.fileData[key];
+    this.setState({thumbnails: thumbnailsMap});
   }
 
   handleGetMimeType = (headerString) => {
@@ -124,17 +130,33 @@ class FileUploader extends Component {
     return type;
   }
 
+  handleRevokeObjectURL = (imageUrl) => {
+    console.log('revoke', imageUrl);
+    const urlCreator = window.URL || window.webkitURL;
+
+    urlCreator.revokeObjectURL(imageUrl);
+  }
+
+  componentWillUnmount() {
+    const { handleRevokeObjectURL } = this;
+    const { thumbnails } = this.state;
+    // 메모리 해제
+    [...thumbnails].map(([key, value]) => {
+      handleRevokeObjectURL(value);
+    });
+  }
+
   render() {
     const { handleStartRead, handleDelete } = this;
-    const { files } = this.state;
-    console.log('+++FileUpload', this.state, [...files]);
+    const { thumbnails } = this.state;
+    console.log('+++FileUpload', this.props, [...thumbnails]);
     return (
-      <div id="wrap-fileupload">
+      <div id="wrap-banner-upload">
         <div className="wrap-viewer">
           <div className="file-viewer-area" >
             <div>
               <MaterialIcon icon="folder_open" /> <br />
-              문서 파일을 추가해 주세요.
+              이미지 파일을 추가해 주세요.
             </div>
           </div>
           <input
@@ -146,25 +168,26 @@ class FileUploader extends Component {
             ref={ref => {this.fileUploader = ref;}}
           />
         </div>
-        {
-          [...files].map(([key, value]) => {
-            console.log('files map', value, value.name);
-            return (
-              <div className="wrap-file" key={key}>
-                <div className="file-name" title={value.name}>
-                  {value.name}
+        <div className="wrap-thumbnail">
+          {
+            [...thumbnails].map(([key, value]) => {
+              return (
+                <div
+                  className="file-thumbnail"
+                  key={key}
+                  style={{ backgroundImage: `url(${value})`}}
+                >
+                  <div className="close" onClick={(e) => { handleDelete(e, key); }}>
+                    <MaterialIcon icon="cancel" />
+                  </div>
                 </div>
-                <div className="file-size">{value.size} Bytes</div>
-                <div className="close" onClick={(e) => { handleDelete(e, key); }}>
-                  <MaterialIcon icon="cancel" />
-                </div>
-              </div>
-            )
-          })
-        }
+              )
+            })
+          }
+        </div>
       </div>
     );
   }
 }
 
-export default FileUploader;
+export default BannerImageUploader;

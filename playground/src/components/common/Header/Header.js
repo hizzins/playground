@@ -5,7 +5,7 @@ import './Header.scss';
 const Header = () => (
   <header className="header">
     <div>
-      <Link to="/">hizzin's UI library</Link>
+      <Link to="/">Hizzin's React Component</Link>
     </div>
   </header>
 );

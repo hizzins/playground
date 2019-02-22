@@ -4,8 +4,10 @@ import { Carousel, CarouselGroup } from 'components';
 const CarouselPage = () => {
   return (
     <div className="page">
-      <CarouselGroup />
       <Carousel />
+      <CarouselGroup />
+      <CarouselGroup />
+      <CarouselGroup />
     </div>
   )
 };
