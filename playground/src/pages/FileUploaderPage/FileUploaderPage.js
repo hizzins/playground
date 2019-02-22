@@ -7,6 +7,7 @@ const FileUploaderPage = () => {
   return (
     <div className="page file-uploader-page">
       <FileUploader />
+      <h4>Features</h4>
       <ul>
         <li><MaterialIcon icon="check" size={12} /> multiple upload</li>
         <li><MaterialIcon icon="check" size={12} /> 이미지 썸네일 보기</li>

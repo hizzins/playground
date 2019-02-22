@@ -263,9 +263,9 @@ module.exports = {
             test: /\.scss$/,
             loader: ExtractTextPluginCSS.extract(
               Object.assign(
+
                 {
                   fallback: require.resolve('style-loader'),
-                  },
                   use: [
                     {
                       loader: require.resolve('css-loader'),
@@ -300,7 +300,7 @@ module.exports = {
                     {
                       loader: require.resolve('sass-loader'),
                       options: {
-                        includePaths: [paths.globalStyles]
+                        sourceMap: true
                       }
                     }
                   ],

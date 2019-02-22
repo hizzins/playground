@@ -8,7 +8,6 @@ class FileUploader extends Component {
 
     this.state = {thumbnails: new Map()};
     this.fileKey = 0;
-    this.fileData = {};
     this.maxFileSize = 1048576 * 30;
     this.formData = new FormData();
   }
@@ -85,9 +84,9 @@ class FileUploader extends Component {
       alert('이미지파일만 업로드 됩니다.(jpg, png, gif)');
     } else {
       this.setState({thumbnails: new Map(newState)}, () => { console.log('상태변경', this.state);});
-      this.fileData[this.fileKey] = fileReader.uploadedFile;
       this.fileKey++;
     }
+
     this.fileUploader.value = '';
   }
 
@@ -100,10 +99,13 @@ class FileUploader extends Component {
 
   handleDelete = (e, key) => {
     console.log('handleDelete', e, key);
+    const { handleRevokeObjectURL } = this;
     // state copy
     const thumbnailsMap = new Map(this.state.thumbnails);
+    // 메모리 해제
+    handleRevokeObjectURL(thumbnailsMap.get(key));
     thumbnailsMap.delete(key);
-    delete this.fileData[key];
+    // delete this.fileData[key];
     this.setState({thumbnails: thumbnailsMap});
   }
 
@@ -126,6 +128,22 @@ class FileUploader extends Component {
         break;
     }
     return type;
+  }
+
+  handleRevokeObjectURL = (imageUrl) => {
+    console.log('revoke', imageUrl);
+    const urlCreator = window.URL || window.webkitURL;
+
+    urlCreator.revokeObjectURL(imageUrl);
+  }
+
+  componentWillUnmount() {
+    const { handleRevokeObjectURL } = this;
+    const { thumbnails } = this.state;
+    // 메모리 해제
+    [...thumbnails].map(([key, value]) => {
+      handleRevokeObjectURL(value);
+    });
   }
 
   render() {
