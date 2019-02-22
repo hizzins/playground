@@ -8,6 +8,7 @@ const ListPage = () => {
       <div className="menu">
         <Link to="/carousel">Carousel</Link>
         <Link to="/file-uploader">File Uploader</Link>
+        <Link to="/editor">Editor</Link>
       </div>
       <div className="footer">
         REF
