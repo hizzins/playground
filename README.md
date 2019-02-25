@@ -1,4 +1,6 @@
 
 
-# hizzins.github.com
-hizzin's playground
+# hizzin's playground
+
+[사이트 보기](https://hizzins.github.io/playground)
+
