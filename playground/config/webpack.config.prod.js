@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const { getAbsPath, rootPath, srcPath, publicPath, distPath } = require('./path');
+const { getAbsPath, rootPath, srcPath, publicPath, deployPath } = require('./path');
 
 module.exports = {
   mode: 'production',
@@ -22,7 +22,7 @@ module.exports = {
   ],
 
   output: {
-    path: distPath,
+    path: deployPath,
     filename: 'bundle.js'
   },
 
@@ -103,7 +103,7 @@ module.exports = {
             options: {
               // http://localhost:9001/public/service/dist-react/{outputPath}
               outputPath: 'img/', // 개발 버전의 절대 경로와 맞춰 파일을 생성한다.
-              publicPath: distPath + '/img/', // for JSX에서 불리는 이미지는 절대 경로를 잡아야 한다 or CDN
+              publicPath: deployPath + '/img/', // for JSX에서 불리는 이미지는 절대 경로를 잡아야 한다 or CDN
               name: '[name].[hash].[ext]'
             }
           }
@@ -135,7 +135,7 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(['/*'], {
-      root: distPath,
+      root: deployPath,
       verbose: true // Write logs to console.
     }),
     new HtmlWebpackPlugin({

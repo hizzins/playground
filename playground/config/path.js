@@ -11,6 +11,7 @@ module.exports = {
   rootPath: getAbsPath(),
   srcPath: getAbsPath('src'),
   distPath: getAbsPath('dist'),
+  deployPath: getAbsPath('docs'),
   publicPath: getAbsPath('public'),
   confPath: getAbsPath('config'),
   getAbsPath
