@@ -8,7 +8,7 @@ class FileUploader extends Component {
 
     this.state = { files: new Map() };
     this.fileKey = 0;
-    this.maxFileSize = 1048576 * 30;
+    this.maxFileSize = 1048576 * 10;
     this.formData = new FormData();
   }
 

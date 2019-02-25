@@ -6,7 +6,15 @@ import './FileUploaderPage.scss';
 const FileUploaderPage = () => {
   return (
     <div className="page file-uploader-page">
-      <FileUploader /><hr />
+      <FileUploader />
+      <h4>Features</h4>
+      <ul>
+        <li><MaterialIcon icon="check" size={12} /> multiple upload</li>
+        <li><MaterialIcon icon="check" size={12} /> 파일정보(이름, 용량) 보기</li>
+        <li><MaterialIcon icon="check" size={12} /> 파일 삭제</li>
+        <li><MaterialIcon icon="check" size={12} /> 파일 사이즈 validation 체크(최대 10MB)</li>
+      </ul>
+      <hr />
       <BannerImageUploader />
       <h4>Features</h4>
       <ul>

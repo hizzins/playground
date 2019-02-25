@@ -1,13 +1,16 @@
 import React from 'react';
 import { Carousel, CarouselGroup } from 'components';
+import './CarouselPage.scss';
 
 const CarouselPage = () => {
   return (
-    <div className="page">
+    <div id="carousel-page" className="page">
       <Carousel />
-      <CarouselGroup />
-      <CarouselGroup />
-      <CarouselGroup />
+      <div className="wrap-carousel-group">
+        <CarouselGroup />
+        <CarouselGroup />
+        <CarouselGroup />
+      </div>
     </div>
   )
 };
