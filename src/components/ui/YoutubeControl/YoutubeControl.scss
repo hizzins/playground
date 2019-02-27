@@ -1,0 +1,97 @@
+@import '~contents/scss/variables.scss';
+
+#youtube-control {
+  .wrap-insert {
+    overflow: hidden;
+
+    label, input, button {
+      float: left;
+    }
+    label {
+      padding-right: 10px;
+    }
+    input {
+      display: inline-block;
+      width: 545px;
+      padding: 0 8px;
+      border-right: 0;
+    }
+  }
+
+  .wrap-list {
+    width: 680px;
+    height: 220px;
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+
+    li {
+      display: flex;
+      align-items: center;
+
+      &:not(first-child) {
+        margin-top: 5px;
+      }
+
+      .thumbnail {
+        width: 150px;
+        text-align: center;
+      }
+
+      .title {
+        padding-left: 5px;
+        flex-grow: 1;
+
+        white-space: normal;
+        white-space: normal;
+        line-height: 1.2;
+        overflow: hidden;
+        height: 70px;
+        text-align: left;
+        word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+
+      }
+
+      .buttons {
+        flex-shrink: 0;
+      }
+    }
+
+    button {
+      margin-bottom: 3px;
+      margin-left: 6px;
+    }
+  }
+
+  .wrap-player {
+    margin-top: 20px;
+    margin-bottom: 100px;
+
+      .player {
+        width: 401px;
+        height: 246px;
+        border: 1px solid #ccc;
+
+        &.control {
+          height: 278px;
+
+          button {
+            min-width: 64px;
+          }
+        }
+
+        .wrap-controller {
+          margin-bottom: 5px;
+        }
+
+        button:not(first-child) {
+          margin-left: 5px;
+        }
+      }
+  }
+}

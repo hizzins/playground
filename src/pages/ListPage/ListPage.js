@@ -9,6 +9,7 @@ const ListPage = () => {
         <Link to="/carousel">Carousel</Link>
         <Link to="/file-uploader">File Uploader</Link>
         <Link to="/editor">Editor</Link>
+        <Link to="/youtube">Youtube</Link>
       </div>
       <div className="footer">
         REF
