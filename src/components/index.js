@@ -4,4 +4,5 @@ export { default as BannerImageUploader} from './ui/BannerImageUploader/BannerIm
 export { default as FileUploader} from './ui/FileUploader/FileUploader';
 export { default as QuillEditor} from './ui/QuillEditor/QuillEditor';
 export { default as YoutubeControl} from './ui/YoutubeControl/YoutubeControl';
-export { default as YoutubePlayer} from './ui/YoutubeControl/YoutubePlayer';
+export { default as YoutubeControlPlayer} from './ui/YoutubeControl/YoutubeControlPlayer';
+export { default as YoutubeRemotePlayer} from './ui/YoutubeControl/YoutubeRemotePlayer';
