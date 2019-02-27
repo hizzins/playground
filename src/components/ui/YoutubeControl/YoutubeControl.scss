@@ -12,14 +12,14 @@
     }
     input {
       display: inline-block;
-      width: 545px;
+      width: 678px;
       padding: 0 8px;
       border-right: 0;
     }
   }
 
   .wrap-list {
-    width: 680px;
+    width: 814px;
     height: 220px;
     margin-top: 5px;
     padding: 5px 10px;
@@ -69,29 +69,42 @@
   }
 
   .wrap-player {
+    overflow: hidden;
     margin-top: 20px;
     margin-bottom: 100px;
 
-      .player {
-        width: 401px;
-        height: 246px;
-        border: 1px solid #ccc;
+    .wrap-control-player,
+    .wrap-remote-player {
+      float: left;
+    }
 
-        &.control {
-          height: 278px;
+    .wrap-control-player {
+      margin-right: 10px;
+    }
 
-          button {
-            min-width: 64px;
-          }
-        }
+    .player {
+      width: 401px;
+      height: 278px;
+      border: 1px solid #ccc;
 
-        .wrap-controller {
-          margin-bottom: 5px;
-        }
+      &.control {
 
-        button:not(first-child) {
-          margin-left: 5px;
+        button {
+          min-width: 64px;
         }
       }
+
+      &.remote  {
+        padding-top: 32px;
+      }
+
+      .wrap-controller {
+        margin-bottom: 5px;
+      }
+
+      button:not(first-child) {
+        margin-left: 5px;
+      }
+    }
   }
 }

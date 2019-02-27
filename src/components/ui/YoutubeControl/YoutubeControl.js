@@ -125,18 +125,22 @@ class YoutubeControl extends Component {
         </ul>
 
         <div className="wrap-player">
-          <h4>Control Player</h4>
-          <div className="player control">
-            {
-              control.isBindPlayer && handleReturnControlPlayer()
-            }
+          <div className="wrap-control-player">
+            <h4>Control Player</h4>
+            <div className="player control">
+              {
+                control.isBindPlayer && handleReturnControlPlayer()
+              }
 
+            </div>
           </div>
-          <h4>Remote Player</h4>
-          <div className="player remote">
-            {
-              remote.isBindPlayer && handleReturnRemotePlayer()
-            }
+          <div className="wrap-remote-player">
+            <h4>Remote Player</h4>
+            <div className="player remote">
+              {
+                remote.isBindPlayer && handleReturnRemotePlayer()
+              }
+            </div>
           </div>
         </div>
       </div>
