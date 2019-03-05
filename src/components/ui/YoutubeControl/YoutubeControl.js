@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { YoutubeControlPlayer, YoutubeRemotePlayer } from 'components';
-import getYoutubeTitle from 'get-youtube-title';
+// import getYoutubeTitle from 'get-youtube-title';
 import './YoutubeControl.scss';
 
 class YoutubeControl extends Component {
@@ -27,18 +27,36 @@ class YoutubeControl extends Component {
   };
 
   handleUploadYoutube = () => {
-    const { handleGetYoutubeId } = this;
+    const { handleGetYoutubeId, handleGetYoutubeTitle } = this;
     const youtubeAddress = this.youtubeId.value;
     const youtubeId = handleGetYoutubeId(youtubeAddress);
     const oldList = this.state.youtubeList;
-
+    console.log('+++youtubeId', youtubeId);
     // 유투브 타이틀 get
-    getYoutubeTitle(
-      youtubeId,
-      (err, youtubeTitle) => {
-        this.setState({youtubeList: [...oldList, {youtubeId, youtubeTitle}], isChangeControl: false});
-      });
+    handleGetYoutubeTitle(youtubeId)
+    .then((data) => {
+      if (data.items[0].snippet) {
+        const youtubeTitle = data.items[0].snippet.title;
+        const thumbnail = data.items[0].snippet.thumbnails.default.url;
+        this.setState({youtubeList: [...oldList, {youtubeId, youtubeTitle, thumbnail}], isChangeControl: false});
+      } else {
+        alert('URL을 다시 확인 해주세요.');
+      }
+
+    });
   };
+
+  handleGetYoutubeTitle = (videoId) => {
+    const ytApiKey = 'AIzaSyDd1z2RviP-HbS17ofMO-3V1s6bCJn6DNc';
+    const apiURL = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + videoId + '&key=' + ytApiKey;
+
+    return new Promise((resolve, reject) => {
+      $.get(apiURL, (data) => {
+        console.log('유투브 데이터', data);
+        resolve(data);
+      });
+    });
+  }
 
   handleSyncYoutube = (currentTime) => {
     const oldState = this.state.remote;
@@ -83,7 +101,6 @@ class YoutubeControl extends Component {
     )
   };
 
-
   render() {
     const { control, remote, youtubeList, inputValue } = this.state;
     const {
@@ -107,11 +124,11 @@ class YoutubeControl extends Component {
         <ul className="wrap-list scroll">
           {
             youtubeList && youtubeList.map((youtubeInfo, index) => {
-              const { youtubeId, youtubeTitle } = youtubeInfo;
+              const { youtubeId, youtubeTitle, thumbnail } = youtubeInfo;
               return (
                 <li key={index}>
                   <div className="thumbnail">
-                    <img width="130px" src={`https://img.youtube.com/vi/${youtubeId}/0.jpg`} />
+                    <img width="130px" src={thumbnail} />
                   </div>
                   <div className="title">{ youtubeTitle }</div>
                   <div className="buttons">
