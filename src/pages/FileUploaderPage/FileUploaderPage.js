@@ -1,5 +1,5 @@
 import React from 'react';
-import { BannerImageUploader, FileUploader } from 'components';
+import { ImageUploader, FileUploader } from 'components';
 import MaterialIcon, {colorPalette} from 'material-icons-react';
 import './FileUploaderPage.scss';
 
@@ -15,7 +15,7 @@ const FileUploaderPage = () => {
         <li><MaterialIcon icon="check" size={12} /> 파일 사이즈 validation 체크(최대 10MB)</li>
       </ul>
       <hr />
-      <BannerImageUploader />
+      <ImageUploader />
       <h4>Features</h4>
       <ul>
         <li><MaterialIcon icon="check" size={12} /> multiple upload</li>

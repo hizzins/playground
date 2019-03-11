@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import MaterialIcon, {colorPalette} from 'material-icons-react';
-import './BannerImageUploader.scss';
+import './ImageUploader.scss';
 
-class BannerImageUploader extends Component {
+class ImageUploader extends Component {
   constructor(props) {
     super(props);
 
@@ -59,35 +59,36 @@ class BannerImageUploader extends Component {
     // Obtain the read file data
     const fileReader = e.target;
     const fileData = fileReader.result;
-    const { handleGetMimeType } = this;
+    const { handleGetMimeType, handleMakeHeader } = this;
     const { thumbnails } = this.state;
 
     const arrayBufferView = new Uint8Array( fileData );
     const blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
     const urlCreator = window.URL || window.webkitURL;
     const imageUrl = urlCreator.createObjectURL( blob );
-    const willAddState = new Map().set(this.fileKey, imageUrl);
-    const newState = [...thumbnails, ...willAddState];
-
-    var fileArr = (new Uint8Array(fileData)).subarray(0, 4);
-    var header = '';
-
-    console.log('+++fileArr', fileArr);
-
-    for (var i = 0; i < fileArr.length; i++) {
-      header += fileArr[i].toString(16);
-    }
-
+    const newState = new Map(thumbnails).set(this.fileKey, imageUrl);
+    const fileArr = (new Uint8Array(fileData)).subarray(0, 4);
+    const header = handleMakeHeader(fileArr);
     const mimeType = handleGetMimeType(header);
 
     if (mimeType !== 'image/png' && mimeType !== 'image/gif' && mimeType !== 'image/jpeg') {
       alert('이미지파일만 업로드 됩니다.(jpg, png, gif)');
     } else {
-      this.setState({thumbnails: new Map(newState)}, () => { console.log('상태변경', this.state);});
+      this.setState({thumbnails: newState});
       this.fileKey++;
     }
 
     this.fileUploader.value = '';
+  }
+
+  handleMakeHeader = (fileArr) => {
+    let header = '';
+
+    for (let i = 0; i < fileArr.length; i++) {
+      header += fileArr[i].toString(16);
+    }
+
+    return header;
   }
 
   handleError = (e) => {
@@ -151,7 +152,7 @@ class BannerImageUploader extends Component {
     const { thumbnails } = this.state;
     console.log('+++FileUpload', this.props, [...thumbnails]);
     return (
-      <div id="wrap-banner-upload">
+      <div id="wrap-image-upload">
         <div className="wrap-viewer">
           <div className="file-viewer-area" >
             <div>
@@ -190,4 +191,4 @@ class BannerImageUploader extends Component {
   }
 }
 
-export default BannerImageUploader;
+export default ImageUploader;

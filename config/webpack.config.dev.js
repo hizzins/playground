@@ -35,7 +35,7 @@ module.exports = {
     hot: true,                 // 모듈만 체인지 (react-hot-loader 필요)
     inline: true,              // 핫 리로드 불가시 전체 번들링을 불러오기 위해 전체 리로딩 한다 include devServer to bundle
     //host: '0.0.0.0',
-    port: 4000,
+    port: 3000,
     contentBase: publicPath + '/',
     // openPage: '/',
     historyApiFallback: true  // 리프레시 할때 404 대신 index페이지를 내려줘서 React라우터 사용시 필요하다.
