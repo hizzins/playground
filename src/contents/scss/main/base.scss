@@ -1,5 +1,5 @@
 @import url('//fonts.googleapis.com/earlyaccess/notosanskr.css');
-@import '~./variables.scss';
+@import '~../modules/variables.scss';
 
 body {
   margin: 0;
@@ -9,7 +9,6 @@ body {
   -webkit-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $color-base;
-
 }
 
 * {
@@ -44,42 +43,6 @@ ul, ol {
 
   h4 {
     margin-bottom: 5px;
-  }
-
-  button {
-    height: 30px;
-    line-height: 30px;
-    font-size: 1rem;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-
-  button.submit {
-    font-weight: bold;
-    background-color: #47c9a5;
-  }
-
-  button.default {
-    background-color: #62c4f9;
-  }
-
-  button.transparent {
-    height: 28px;
-    line-height: 28px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    background-color: transparent;
-    color: #62c4f9;
-    border: 1px solid #62c4f9;
-    border-radius: 5px;
-  }
-
-  button.small {
-    height: 26px;
-    line-height: 26px;
-    font-size: 0.8rem;
-    font-weight: bold;
   }
 
   input {

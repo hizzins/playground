@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './Root';
 import * as serviceWorker from './serviceWorker';
-import './contents/scss/base.scss';
+import './contents/scss/style.scss';
 
 ReactDOM.render(<Root />, document.getElementById('root'));
 

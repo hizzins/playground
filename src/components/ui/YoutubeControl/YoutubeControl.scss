@@ -1,4 +1,4 @@
-@import '~contents/scss/variables.scss';
+@import '~contents/scss/modules/variables.scss';
 
 #youtube-control {
   .wrap-insert {
@@ -12,7 +12,7 @@
     }
     input {
       display: inline-block;
-      width: 678px;
+      width: 640px;
       padding: 0 8px;
       border-right: 0;
     }
@@ -48,7 +48,6 @@
         white-space: normal;
         line-height: 1.2;
         overflow: hidden;
-        height: 70px;
         text-align: left;
         word-wrap: break-word;
         display: -webkit-box;
@@ -63,6 +62,7 @@
     }
 
     button {
+      height: 26px;
       margin-bottom: 3px;
       margin-left: 6px;
     }

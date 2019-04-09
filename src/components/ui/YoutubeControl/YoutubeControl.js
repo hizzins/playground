@@ -7,7 +7,7 @@ class YoutubeControl extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: 'https://www.youtube.com/watch?v=oeWN_92Lmvo',
+      inputValue: 'https://www.youtube.com/watch?v=B6uuIHpFkuo',
       control: { isBindPlayer: false, playId: '' },
       remote: { isBindPlayer: false, playId: '', isChangeControl: false, controlDetail: {} },
       youtubeList: []
@@ -33,9 +33,8 @@ class YoutubeControl extends Component {
     const oldList = this.state.youtubeList;
     console.log('+++youtubeId', youtubeId);
     // 유투브 타이틀 get
-    handleGetYoutubeTitle(youtubeId)
-    .then((data) => {
-      if (data.items[0].snippet) {
+    handleGetYoutubeTitle(youtubeId).then((data) => {
+      if (data.items.length && data.items[0].snippet) {
         const youtubeTitle = data.items[0].snippet.title;
         const thumbnail = data.items[0].snippet.thumbnails.default.url;
         this.setState({youtubeList: [...oldList, {youtubeId, youtubeTitle, thumbnail}], isChangeControl: false});
@@ -132,8 +131,8 @@ class YoutubeControl extends Component {
                   </div>
                   <div className="title">{ youtubeTitle }</div>
                   <div className="buttons">
-                    <button type="button" className="transparent small" onClick={() => {handlePlayYoutube(youtubeId)}}>재생하기</button>
-                    <button type="button" className="transparent small" onClick={() => {handleShareYoutube(youtubeId)}}>공유하기</button>
+                    <button type="button" className="button transparent fitted small" onClick={() => {handlePlayYoutube(youtubeId)}}>재생하기</button>
+                    <button type="button" className="button transparent fitted small" onClick={() => {handleShareYoutube(youtubeId)}}>공유하기</button>
                   </div>
                 </li>
               )
