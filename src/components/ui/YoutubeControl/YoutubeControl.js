@@ -118,7 +118,7 @@ class YoutubeControl extends Component {
             onChange={(e) => {handleInputChange(e);}}
             ref={ref => {this.youtubeId = ref;}}
           />
-          <button type="button" className="submit" onClick={() => {handleUploadYoutube();}}>추가</button>
+          <button type="button" className="primary" onClick={() => {handleUploadYoutube();}}>추가</button>
         </article>
         <ul className="wrap-list scroll">
           {

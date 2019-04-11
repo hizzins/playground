@@ -1,5 +1,76 @@
 @import '~contents/scss/modules/variables.scss';
 
 #Toast {
+  .button {
+    margin-right: 5px;
+  }
 
+  .wrap-toast-outer {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    left: 50%;
+    top: 64px;
+    transform: translateX(-50%);
+    z-index: 6510;
+  }
+
+  .wrap-buttons {
+    margin-top: 20px;
+  }
+
+  .notice-message {
+    display: inline-block;
+    width: 400px;
+    margin-left: 5px;
+  }
+
+  .wrap-toast {
+    height: auto;
+    margin-bottom: 6px;
+    margin-top: -54px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+
+    &.hide {
+      display: none;
+    }
+
+    &.show {
+      margin-top: 0;
+      transition: margin-top .2s ease-in-out;
+    }
+
+    .toast-inner {
+      display: flex;
+      justify-content: center;
+      min-width: 360px;
+      padding: 10px 40px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+
+      i {
+        display: inline-block;
+        margin-right: 14px;
+        margin-top: 3px;
+      }
+
+      i, span {
+        float: left;
+      }
+
+      &.success {
+        background-color: rgba(72, 172, 72, 0.85);
+      }
+
+      &.normal {
+        background-color: rgba(75, 160, 186, 0.85);
+      }
+
+      &.error {
+        background-color: rgba(234, 67, 59, 0.85);
+      }
+
+    }
+  }
 }

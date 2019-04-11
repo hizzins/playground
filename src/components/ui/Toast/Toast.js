@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Toast.scss';
 import moment from 'moment';
 import MaterialIcon from 'material-icons-react';
 
@@ -7,44 +6,40 @@ class Toast extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { inputMessage: '', toast: {} };
   }
 
-  handleShowToast = (type) => {
-    const message = this.state.inputMessage;
-    const timestamp = moment().valueOf();
-    const newToast = { [timestamp]:  { message, type } };
+  componentDidMount() {
+    const { timestamp, onHideTimer } = this.props;
+    const $target = $(`.toast-${timestamp}`);
 
-    this.setState({...this.state.toast, toast: newToast});
-  }
+    setTimeout(() => {
+      $target.addClass('show');
+    }, 10);
 
-  handleHideToast = (timestamp) => {
-    const toast = { ...this.state.toast };
-    delete toast[timestamp];
-
-    this.setState({...this.state.toast, toast});
-  }
-
-  handleChange = (e) => {
-    const message = e.target.value;
-    this.setState({message});
+    setTimeout(() => {
+      onHideTimer(timestamp);
+    }, 3010);
   }
 
   render() {
-    console.log('render');
-    const { handleChange, handleShowToast } = this;
+    const { message, type, timestamp } = this.props;
+
+    let icon = '';
+
+    if (type === 'success') {
+      icon = 'check_circle';
+    } else if (type === 'error') {
+      icon = 'warning';
+    } else {
+      icon = 'error';
+    }
+
     return (
-      <div id="Toast" className="Toast">
-        <input type="text" onChange={(e) => {handleChange(e)}} />
-        <button className="btn" type="button" onClick={() => handleShowToast('success') }>
-          <MaterialIcon icon="done" />성공 메세지
-        </button>
-        <button type="button" onClick={() => handleShowToast('normal') }>
-          <MaterialIcon icon="error" />예외 메세지
-        </button>
-        <button type="button" onClick={() => handleShowToast('error') }>
-          <MaterialIcon icon="warning" />에러 메세지
-        </button>
+      <div className={`wrap-toast toast-${timestamp}`}>
+        <div className={`toast-inner ${type}`}>
+          <MaterialIcon icon={icon} />
+          <span>{message}</span>
+        </div>
       </div>
     );
   }
