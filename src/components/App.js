@@ -1,6 +1,15 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { ListPage, CarouselPage, FileUploaderPage, RichEditorPage, YoutubePage, ToastPage, NotFoundPage } from 'pages';
+import {
+  ListPage,
+  CarouselPage,
+  FileUploaderPage,
+  RichEditorPage,
+  YoutubePage,
+  ToastPage,
+  NotFoundPage,
+  WebrtcPage
+} from 'pages';
 import { PageTemplate } from 'components/common';
 
 const App = () => {
@@ -15,6 +24,7 @@ const App = () => {
           <Route path='/editor' component={RichEditorPage} />
           <Route path='/youtube' component={YoutubePage} />
           <Route path='/toast' component={ToastPage} />
+          <Route path='/webrtc' component={WebrtcPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>
