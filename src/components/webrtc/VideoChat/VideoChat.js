@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './WebChat.scss';
+import './VideoChat.scss';
 
-class WebChat extends Component {
+class VideoChat extends Component {
   constructor(props) {
     super(props);
     this.videoTracks = null;
@@ -34,11 +34,11 @@ class WebChat extends Component {
         </div>
         <button className="button primary round" onClick={handleCapture}>사진 찍기</button>
         <div className="wrap-pohto-area">
-          <canvas width="320" height="240" ref={ref => this.snapshotCanvas= ref } />
+          <canvas width="320" height="240" ref={ref => this.snapshotCanvas= ref} />
         </div>
       </div>
     );
   }
 }
 
-export default WebChat;
+export default VideoChat;

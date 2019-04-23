@@ -8,4 +8,5 @@ export { default as YoutubeControlPlayer} from './ui/YoutubeControl/YoutubeContr
 export { default as YoutubeRemotePlayer} from './ui/YoutubeControl/YoutubeRemotePlayer';
 export { default as ToastControl} from './ui/Toast/ToastControl';
 export { default as Toast} from './ui/Toast/Toast';
-export { default as WebChat} from './webrtc/WebChat/WebChat';
+export { default as VideoChat} from './webrtc/VideoChat/VideoChat';
+export { default as WebCamera} from './webrtc/WebCamera/WebCamera';
