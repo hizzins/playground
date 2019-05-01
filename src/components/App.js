@@ -8,7 +8,7 @@ import {
   YoutubePage,
   ToastPage,
   NotFoundPage,
-  WebrtcPage
+  WebrtcCameraPage
 } from 'pages';
 import { PageTemplate } from 'components/common';
 
@@ -24,7 +24,7 @@ const App = () => {
           <Route path='/editor' component={RichEditorPage} />
           <Route path='/youtube' component={YoutubePage} />
           <Route path='/toast' component={ToastPage} />
-          <Route path='/webrtc' component={WebrtcPage} />
+          <Route path='/WebrtcCameraPage' component={WebrtcCameraPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>

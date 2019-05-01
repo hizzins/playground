@@ -1,18 +1,11 @@
 import React from 'react';
-import { VideoChat, WebCamera } from 'components';
+import { WebCamera } from 'components';
 import MaterialIcon from 'material-icons-react';
-import './WebrtcPage.scss';
+import './WebrtcCameraPage.scss';
 
-const WebrtcPage = () => {
+const WebrtcCameraPage = () => {
   return (
     <div className="page webrtc-page">
-      <VideoChat />
-      <h4>Features</h4>
-      <ul>
-        <li><MaterialIcon icon="check" size={12} /> 사진 찍기</li>
-        <li><MaterialIcon icon="check" size={12} /> </li>
-        <li><MaterialIcon icon="check" size={12} /> </li>
-      </ul>
 
       <WebCamera />
       <h4>Features</h4>
@@ -25,4 +18,4 @@ const WebrtcPage = () => {
   )
 };
 
-export default WebrtcPage;
+export default WebrtcCameraPage;
