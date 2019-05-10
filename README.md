@@ -1,12 +1,14 @@
 
 
-# hizzin's playground
+## git page link
 
-[git page (https://hizzins.github.io/playground)](https://hizzins.github.io/playground)
+[https://hizzins.github.io/playground](https://hizzins.github.io/playground)
 
-# execute playground
+## execute playground
 ```js
 npm run start
 ```
-# execute storybook
+## execute storybook
+```js
 npm run storybook
+```
