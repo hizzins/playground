@@ -5,15 +5,18 @@ import MaterialIcon, {colorPalette} from 'material-icons-react';
 class Carousel extends Component {
   constructor(props) {
     super(props);
-    this.state = { direction: 'left', next: 1, active: 0 };
+    console.log('Carousel props', props);
+
+    const slides = props.slides ? props.slides : [
+      {"id": "slide1", "imageURL": "contents/image/background-1.jpg", "alt": "100% 웹브라우저 화상회의"},
+      {"id": "slide2", "imageURL": "contents/image/background-2.jpg", "alt": "특허받은 회의실 객체를 이용한 ‘LOUNGE’ UX"},
+      {"id": "slide3", "imageURL": "contents/image/background-3.jpg", "alt": "서로의 이해도를 높이는 화면 공유"},
+      {"id": "slide4", "imageURL": "contents/image/background-4.jpg", "alt": "협업의 필수, 문서 공유"}
+    ];
+
+    this.state = { direction: 'left', next: 1, active: 0, slides};
     this.CarouselTimer = null;
 
-    this.slides = [
-      {id: 'slide1', imageURL: require('contents/image/background-1.jpg'), alt: "100% 웹브라우저 화상회의"},
-      {id: 'slide2', imageURL: require('contents/image/background-2.jpg'), alt: "특허받은 회의실 객체를 이용한 ‘LOUNGE’ UX"},
-      {id: 'slide3', imageURL: require('contents/image/background-3.jpg'), alt: "서로의 이해도를 높이는 화면 공유"},
-      {id: 'slide4', imageURL: require('contents/image/background-4.jpg'), alt: "협업의 필수, 문서 공유"}
-    ];
   }
 
   handleJump = (nextIndex) => {
@@ -35,8 +38,8 @@ class Carousel extends Component {
   handleNext = (e, isControld) => {
     e && e.preventDefault();
     const { handleRestart } = this;
-    const { next } = this.state;
-    const length = this.slides.length -1;
+    const { next, slides } = this.state;
+    const length = slides.length -1;
     const newNext = (next + 1 > length) ? 0 : next + 1;
     const newActive = (next > length) ? 0 : next;
 
@@ -50,8 +53,8 @@ class Carousel extends Component {
   handlePrev = (e) => {
     e && e.preventDefault();
     const { handleRestart } = this;
-    const { next } = this.state;
-    const length = this.slides.length - 1;
+    const { next, slides } = this.state;
+    const length = slides.length - 1;
     const newNext = (next - 1 < 0) ? length : next - 1;
     const newActive = (next < 0) ? length : next;
 
@@ -73,13 +76,18 @@ class Carousel extends Component {
     handleStartCarousel();
   }
 
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log('update', nextProps);
+    return true;
+  }
+
   componentWillUnmount() {
     clearInterval(this.CarouselTimer);
   }
 
   render() {
-    const { handleNext, handlePrev, slides, handleJump } = this;
-    const { next, active, direction } = this.state;
+    const { handleNext, handlePrev, handleJump } = this;
+    const { next, active, direction, slides } = this.state;
 
     return (
       <div id="choiceCarousel" className="carousel slide" data-ride="carousel">
@@ -99,9 +107,10 @@ class Carousel extends Component {
             slides.map((item, i) => {
               const nextClass = (i === next) ? 'next' : '';
               const activeClass = (i === active) ? 'active' : '';
+              console.log('이미지', item.imageURL, '' + item.imageURL);
               return (
                 <div id={item.id} className={`item idx-${i} ${direction} ${nextClass} ${activeClass}`} data-item="browser" key={i}>
-                  <img src={item.imageURL} alt={item.alt} />
+                  <img src={require(`${item.imageURL}`)} alt={item.alt} />
                 </div>
               )
             })

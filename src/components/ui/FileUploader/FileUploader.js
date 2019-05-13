@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import MaterialIcon from 'material-icons-react';
+import PropTypes from 'prop-types';
 import './FileUploader.scss';
 
 class FileUploader extends Component {
@@ -59,7 +60,6 @@ class FileUploader extends Component {
     // Obtain the read file data
     const fileReader = e.target;
     const fileData = fileReader.result;
-    const { handleGetMimeType } = this;
     const { files } = this.state;
     const uploadedFile = fileReader.uploadedFile;
 
@@ -69,27 +69,17 @@ class FileUploader extends Component {
     var fileArr = (new Uint8Array(fileData)).subarray(0, 4);
     var header = '';
 
-    console.log('+++fileArr', fileArr);
-
     for (var i = 0; i < fileArr.length; i++) {
       header += fileArr[i].toString(16);
     }
 
-    // const mimeType = handleGetMimeType(header);
-
-    // if (mimeType !== 'image/png' && mimeType !== 'image/gif' && mimeType !== 'image/jpeg') {
-    //   alert('이미지파일만 업로드 됩니다.(jpg, png, gif)');
-    // } else {
-      console.log('+++여기', this.state);
-      this.setState({ files: new Map(newState)}, () => { console.log('상태변경', this.state);});
-      this.fileKey++;
-    // }
+    this.setState({ files: new Map(newState)}, () => { console.log('상태변경', this.state);});
+    this.fileKey++;
 
     this.fileUploader.value = '';
   }
 
   handleError = (e) => {
-    console.log('++++handleError');
     if (e.target.error.name == 'NotReadableError') {
       // The file could not be read
     }
@@ -103,38 +93,19 @@ class FileUploader extends Component {
     this.setState({files: filesMap});
   }
 
-  handleGetMimeType = (headerString) => {
-    let type = 'unknown';
-    switch (headerString) {
-      case "89504e47":
-        type = "image/png";
-        break;
-      case "47494638":
-        type = "image/gif";
-        break;
-      case "ffd8ffe0":
-      case "ffd8ffe1":
-      case "ffd8ffe2":
-        type = "image/jpeg";
-        break;
-      default:
-        type = "unknown";
-        break;
-    }
-    return type;
-  }
-
   render() {
     const { handleStartRead, handleDelete } = this;
     const { files } = this.state;
-    console.log('+++FileUpload', this.state, [...files]);
+    const { text } = this.props;
+    const placeholder = text;
+    console.log('+++FileUpload', this.state, this.props);
     return (
       <div id="wrap-fileupload">
         <div className="wrap-viewer">
           <div className="file-viewer-area" >
             <div>
               <MaterialIcon icon="folder_open" /> <br />
-              문서 파일을 추가해 주세요.
+              {placeholder}
             </div>
           </div>
           <input
@@ -166,5 +137,14 @@ class FileUploader extends Component {
     );
   }
 }
+
+
+FileUploader.propTypes = {
+  text: PropTypes.string
+};
+
+FileUploader.defaultProps = {
+  text: '문서 파일을 추가해 주세요.'
+};
 
 export default FileUploader;
