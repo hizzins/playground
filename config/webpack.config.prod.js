@@ -105,7 +105,7 @@ module.exports = {
             options: {
               // http://localhost:9001/public/service/dist-react/{outputPath}
               outputPath: '/contents/img/', // 개발 버전의 절대 경로와 맞춰 파일을 생성한다.
-              publicPath: '/playground/img/', // for JSX에서 불리는 이미지는 절대 경로를 잡아야 한다 or CDN
+              publicPath: '/playground/contents/img/', // for JSX에서 불리는 이미지는 절대 경로를 잡아야 한다 or CDN
               name: '[name].[hash].[ext]'
             }
           }
