@@ -1,6 +1,11 @@
 #carousel-page {
   .wrap-carousel-group {
     clear: both;
+    overflow: hidden;
     margin-top: 100px;
+  }
+  h4 {
+    margin-top: 100px;
+    clear: both;
   }
 }

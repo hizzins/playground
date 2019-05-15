@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import './Carousel.scss';
+import './Slide.scss';
 import MaterialIcon, {colorPalette} from 'material-icons-react';
 import PropTypes from "prop-types";
-import FileUploader from "../FileUploader/FileUploader";
 
-class Carousel extends Component {
+class Slide extends Component {
   constructor(props) {
     super(props);
     console.log('Carousel props', props);
@@ -125,11 +124,11 @@ class Carousel extends Component {
   }
 }
 
-Carousel.propTypes = {
+Slide.propTypes = {
   slides: PropTypes.array
 };
 
-Carousel.defaultProps = {
+Slide.defaultProps = {
   slides: [
         {"id": "slide1", "image": "background-1.jpg", "alt": "100% 웹브라우저 화상회의"},
         {"id": "slide2", "image": "background-2.jpg", "alt": "특허받은 회의실 객체를 이용한 ‘LOUNGE’ UX"},
@@ -138,4 +137,4 @@ Carousel.defaultProps = {
       ]
 };
 
-export default Carousel;
+export default Slide;

@@ -1,6 +1,9 @@
 @import '~contents/scss/modules/variables.scss';
 
 #carousel-group {
+  width: auto;
+  float: left;
+
   .panel-channel { margin-top: 56px; background: #d2d2d2; }
   .panel-channel ul { padding-left: 0; padding-bottom: 20px; }
   .panel-channel .panel-contents { min-height: 210px; }
@@ -56,8 +59,15 @@
       vertical-align: middle;
   }
   .channel-list .channel-item .channel-item-inner-wrap {
+    display: flex;
+    justify-items: center;
     padding: 23px 20px 20px 26px; width: 100%; height: 100%; border-radius: 5px;
     box-sizing: border-box;
+  }
+  .channel-list .channel-item .channel-item-inner-wrap h2 {
+    width: 100%;
+    color: #666;
+    text-align: center;
   }
   .channel-list .channel-item .channel-footer .icon-cola-lock {
     display: inline-block; height: 25px; margin-right: 6px; color: rgba(0, 0, 0, 0.5);  font-size: 30px;
@@ -158,7 +168,7 @@
       right: -100px;
       opacity: 0;
     }
-    20%, 65% {
+    20%, 70% {
       right: 277px;
       opacity: 1;
     }
@@ -168,7 +178,7 @@
     }
     90% {
       right: 400px;
-      opacity: 0;
+      opacity: 0.3;
     }
     100% {
       opacity: 0;
@@ -181,7 +191,7 @@
     right: -100px;
     opacity: 0;
   }
-  20%, 65% {
+  20%, 70% {
     right: 190px;
     opacity: 1;
   }
@@ -190,7 +200,7 @@
     opacity: 0.6;
   }
   90% {
-    opacity: 0;
+    opacity: 0.3;
   }
   100% {
     opacity: 0;
@@ -203,7 +213,7 @@
     right: -100px;
     opacity: 0;
   }
-  20%, 65% {
+  20%, 70% {
     right: 103px;
     opacity: 1;
   }
@@ -212,7 +222,7 @@
     opacity: 0.6;
   }
   90% {
-    opacity: 0;
+    opacity: 0.3;
   }
   100% {
     opacity: 0;
@@ -224,7 +234,7 @@
     right: -100px;
     opacity: 0;
   }
-  20%, 65% {
+  20%, 70% {
     right: 16px;
     opacity: 1;
   }
@@ -232,11 +242,8 @@
     right: 500px;
     opacity: 0.6;
   }
-  90% {
-    opacity: 0;
-  }
   100% {
-    opacity: 0;
+    opacity: 0.6;
     right: 500px;
   }
 }
