@@ -7,7 +7,7 @@ class YoutubeControl extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: 'https://www.youtube.com/watch?v=B6uuIHpFkuo',
+      inputValue: 'https://www.youtube.com/watch?v=TrV9VjLUIJk',
       control: { isBindPlayer: false, playId: '' },
       remote: { isBindPlayer: false, playId: '', isChangeControl: false, controlDetail: {} },
       youtubeList: []
@@ -118,7 +118,7 @@ class YoutubeControl extends Component {
             onChange={(e) => {handleInputChange(e);}}
             ref={ref => {this.youtubeId = ref;}}
           />
-          <button type="button" className="primary" onClick={() => {handleUploadYoutube();}}>추가</button>
+          <button type="button" className="button primary" onClick={() => {handleUploadYoutube();}}>추가</button>
         </article>
         <ul className="wrap-list scroll">
           {

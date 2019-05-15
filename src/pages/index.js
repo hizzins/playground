@@ -5,4 +5,6 @@ export { default as RichEditorPage } from './RichEditorPage/RichEditorPage';
 export { default as YoutubePage } from './YoutubePage/YoutubePage';
 export { default as ToastPage } from './ToastPage/ToastPage';
 export { default as WebrtcCameraPage } from './WebrtcCameraPage/WebrtcCameraPage';
+export { default as CounterPage } from './CounterPage/CounterPage';
+export { default as TodoPage } from './TodoPage/TodoPage';
 export { default as NotFoundPage } from './NotFoundPage/NotFoundPage';

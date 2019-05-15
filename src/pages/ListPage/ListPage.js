@@ -6,12 +6,20 @@ const ListPage = () => {
   return (
     <div className="wrap-main">
       <div className="menu">
-        <Link to="/carousel">Carousel</Link>
-        <Link to="/file-uploader">File Uploader</Link>
-        <Link to="/editor">Editor</Link>
-        <Link to="/youtube">Youtube</Link>
-        <Link to="/toast">Toast</Link>
-        <Link to="/WebrtcCameraPage">webRTCCapture</Link>
+        <section>
+          <h3>UI</h3>
+          <Link to="/carousel">Carousel</Link>
+          <Link to="/file-uploader">File Uploader</Link>
+          <Link to="/editor">Editor</Link>
+          <Link to="/toast">Toast</Link>
+        </section>
+        <section>
+          <h3>Practice</h3>
+          <Link to="/youtube">Youtube</Link>
+          <Link to="/WebrtcCameraPage">webRTCCapture</Link>
+          <Link to="/counter">CounterPage</Link>
+          <Link to="/todo">TodoPage</Link>
+        </section>
       </div>
       <div className="footer">
         REF

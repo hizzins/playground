@@ -20,7 +20,10 @@ module.exports = async ({ config, mode }) => {
     alias: {
       components: srcPath + '/components',
       contents: srcPath + '/contents',
-      pages: srcPath + '/pages'
+      pages: srcPath + '/pages',
+      store: srcPath + '/store',
+      containers: srcPath + '/containers'
+
     }
   };
 

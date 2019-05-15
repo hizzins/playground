@@ -102,7 +102,7 @@ class YoutubeControlPlayer extends Component {
         <div className="wrap-controller">
           <button
             type="button"
-            className="default small"
+            className="button default small fitted"
             onClick={() => {
               playButtonAction();
             }}>
@@ -110,13 +110,13 @@ class YoutubeControlPlayer extends Component {
           </button>
           <button
             type="button"
-            className="default small"
+            className="button default small fitted"
             onClick={handleSeek}>
-            재생구간
+            재생구간 동기화
           </button>
           <button
             type="button"
-            className="default small"
+            className="button default small fitted"
             onClick={() => {
               muteButtonAction();
             }}>
@@ -124,7 +124,7 @@ class YoutubeControlPlayer extends Component {
           </button>
           <button
             type="button"
-            className="default small"
+            className="button default small fitted"
             onClick={() => {
               handleStop();
             }}>

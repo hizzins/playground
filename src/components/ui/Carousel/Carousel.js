@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import './Carousel.scss';
 import MaterialIcon, {colorPalette} from 'material-icons-react';
+import PropTypes from "prop-types";
+import FileUploader from "../FileUploader/FileUploader";
 
 class Carousel extends Component {
   constructor(props) {
     super(props);
     console.log('Carousel props', props);
 
-    const slides = props.slides ? props.slides : [
-      {"id": "slide1", "imageURL": "contents/image/background-1.jpg", "alt": "100% 웹브라우저 화상회의"},
-      {"id": "slide2", "imageURL": "contents/image/background-2.jpg", "alt": "특허받은 회의실 객체를 이용한 ‘LOUNGE’ UX"},
-      {"id": "slide3", "imageURL": "contents/image/background-3.jpg", "alt": "서로의 이해도를 높이는 화면 공유"},
-      {"id": "slide4", "imageURL": "contents/image/background-4.jpg", "alt": "협업의 필수, 문서 공유"}
-    ];
-
-    this.state = { direction: 'left', next: 1, active: 0, slides};
+    this.state = { direction: 'left', next: 1, active: 0, slides: props.slides};
     this.CarouselTimer = null;
-
   }
 
   handleJump = (nextIndex) => {
@@ -38,7 +32,8 @@ class Carousel extends Component {
   handleNext = (e, isControld) => {
     e && e.preventDefault();
     const { handleRestart } = this;
-    const { next, slides } = this.state;
+    const { next} = this.state;
+    const { slides } = this.props;
     const length = slides.length -1;
     const newNext = (next + 1 > length) ? 0 : next + 1;
     const newActive = (next > length) ? 0 : next;
@@ -53,7 +48,8 @@ class Carousel extends Component {
   handlePrev = (e) => {
     e && e.preventDefault();
     const { handleRestart } = this;
-    const { next, slides } = this.state;
+    const { next } = this.state;
+    const { slides } = this.props;
     const length = slides.length - 1;
     const newNext = (next - 1 < 0) ? length : next - 1;
     const newActive = (next < 0) ? length : next;
@@ -87,8 +83,9 @@ class Carousel extends Component {
 
   render() {
     const { handleNext, handlePrev, handleJump } = this;
-    const { next, active, direction, slides } = this.state;
-
+    const { next, active, direction } = this.state;
+    const { slides } = this.props;
+    console.log('++props',this.props, slides);
     return (
       <div id="choiceCarousel" className="carousel slide" data-ride="carousel">
         <ol className="carousel-indicators">
@@ -107,10 +104,10 @@ class Carousel extends Component {
             slides.map((item, i) => {
               const nextClass = (i === next) ? 'next' : '';
               const activeClass = (i === active) ? 'active' : '';
-              console.log('이미지', item.imageURL, '' + item.imageURL);
+              console.log('이미지', item.image);
               return (
                 <div id={item.id} className={`item idx-${i} ${direction} ${nextClass} ${activeClass}`} data-item="browser" key={i}>
-                  <img src={require(`${item.imageURL}`)} alt={item.alt} />
+                  <img src={require(`contents/image/${item.image}`)} alt={item.alt} />
                 </div>
               )
             })
@@ -127,5 +124,18 @@ class Carousel extends Component {
     );
   }
 }
+
+Carousel.propTypes = {
+  slides: PropTypes.array
+};
+
+Carousel.defaultProps = {
+  slides: [
+        {"id": "slide1", "image": "background-1.jpg", "alt": "100% 웹브라우저 화상회의"},
+        {"id": "slide2", "image": "background-2.jpg", "alt": "특허받은 회의실 객체를 이용한 ‘LOUNGE’ UX"},
+        {"id": "slide3", "image": "background-3.jpg", "alt": "서로의 이해도를 높이는 화면 공유"},
+        {"id": "slide4", "image": "background-4.jpg", "alt": "협업의 필수, 문서 공유"}
+      ]
+};
 
 export default Carousel;
