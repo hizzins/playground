@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileUploader, Carousel, Counter } from 'components';
+import { FileUploader, Slide, Counter } from 'components';
 import { storiesOf, addDecorator } from '@storybook/react';
 import { action, configureActions } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
@@ -53,5 +53,5 @@ storiesOf('UI', module).addDecorator(withKnobs).add('Carousel', withInfo({
   text:`
     + 이미지 슬라이드
     `
-})(() => <Carousel slides={object('slides', slides)} />));
+})(() => <Slide slides={object('slides', slides)} />));
 
