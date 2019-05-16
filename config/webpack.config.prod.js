@@ -108,6 +108,18 @@ module.exports = {
               publicPath: '/playground/contents/img/', // for JSX에서 불리는 이미지는 절대 경로를 잡아야 한다 or CDN
               name: '[name].[hash].[ext]'
             }
+          },
+          {
+            loader: 'image-webpack-loader',
+            query: {
+              progressive: true,
+              optimizationLevel: 7,
+              interlaced: false,
+              pngquant: {
+                quality: '50-60',
+                speed: 4
+              }
+            }
           }
         ]
       },
