@@ -69,13 +69,32 @@
     .item {
       display: none;
       position: relative;
-      transition: .6s ease-in-out left;
+
+      &.active {
+        display: block;
+        left: 0;
+      }
 
       &.next {
         position: absolute;
-        display: block;
         top: 0;
         width: 100%;
+        left: 100%;
+      }
+
+      img {
+        display: block;
+        height: auto;
+        max-width: 100%;
+        width: 100%;
+        line-height: 1;
+      }
+    }
+
+    .item.start {
+
+      &.next {
+        display: block;
         left: 0;
 
         &.left {
@@ -88,8 +107,6 @@
       }
 
       &.active {
-        display: block;
-
         &.left {
           left: -100%;
           animation: slideout-left 1s;
@@ -99,14 +116,6 @@
           left: 100%;
           animation: slideout-right 1s;
         }
-      }
-
-      img {
-        display: block;
-        height: auto;
-        max-width: 100%;
-        width: 100%;
-        line-height: 1;
       }
     }
   }

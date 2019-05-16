@@ -6,7 +6,9 @@ import MaterialIcon, {colorPalette} from 'material-icons-react';
 const SlidePage = () => {
   return (
     <div id="slide-page" className="page">
-      <Slide />
+      <div className="wrap-slide">
+        <Slide />
+      </div>
       <h4>Features</h4>
       <ul>
         <li><MaterialIcon icon="check" size={12} /> 이미지 슬라이드 애니메이션</li>

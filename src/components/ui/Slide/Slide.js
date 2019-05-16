@@ -8,7 +8,7 @@ class Slide extends Component {
     super(props);
     console.log('Carousel props', props);
 
-    this.state = { direction: 'left', next: 1, active: 0, slides: props.slides};
+    this.state = { direction: 'left', next: 1, active: 0, isStart: false };
     this.CarouselTimer = null;
   }
 
@@ -28,7 +28,7 @@ class Slide extends Component {
     animationTarget.addEventListener('animationend', handleStartCarousel, {once : true});
   }
 
-  handleNext = (e, isControld) => {
+  handleNext = (e, isControl) => {
     e && e.preventDefault();
     const { handleRestart } = this;
     const { next} = this.state;
@@ -39,7 +39,7 @@ class Slide extends Component {
 
     this.setState({ direction: 'left', next: newNext, active: newActive});
 
-    if (isControld) {
+    if (isControl) {
       handleRestart();
     }
   }
@@ -61,14 +61,15 @@ class Slide extends Component {
   handleStartCarousel = () => {
     const { handleNext } = this;
     this.CarouselTimer && clearInterval(this.CarouselTimer);
-    this.CarouselTimer = setInterval(() => {      console.log('++++startCarousel');
+    this.setState({isStart: true});
+    this.CarouselTimer = setInterval(() => {
       handleNext();
     }, 3000);
   }
 
   componentDidMount() {
     const { handleStartCarousel } = this;
-    handleStartCarousel();
+    setTimeout(() => {handleStartCarousel()}, 2000);
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -82,7 +83,7 @@ class Slide extends Component {
 
   render() {
     const { handleNext, handlePrev, handleJump } = this;
-    const { next, active, direction } = this.state;
+    const { next, active, direction, isStart } = this.state;
     const { slides } = this.props;
     console.log('++props',this.props, slides);
     return (
@@ -90,7 +91,7 @@ class Slide extends Component {
         <ol className="carousel-indicators">
           {
             slides.map((item, i) => {
-              const activeClass = (i === next) ? 'selected' : '';
+              const activeClass = (!isStart && i === 0) || (isStart && (i === next)) ? 'selected' : '';
               return (
                 <li className={activeClass} key={i} onClick={() => { handleJump (i);}} />
               )
@@ -101,12 +102,13 @@ class Slide extends Component {
         <div className="carousel-inner">
           {
             slides.map((item, i) => {
+              const animationClass = isStart ? 'start' : '';
               const nextClass = (i === next) ? 'next' : '';
               const activeClass = (i === active) ? 'active' : '';
-              console.log('이미지', item.image);
+
               return (
-                <div id={item.id} className={`item idx-${i} ${direction} ${nextClass} ${activeClass}`} data-item="browser" key={i}>
-                  <img src={require(`contents/image/${item.image}`)} alt={item.alt} />
+                <div id={item.id} className={`item idx-${i} ${direction} ${nextClass} ${activeClass} ${animationClass}`} data-item="browser" key={i}>
+                  <img src={require(`contents/image/${item.image}`)} alt={item.alt} width="100%" height="100%" />
                 </div>
               )
             })

@@ -10,8 +10,8 @@ const ListPage = () => {
           <h3>UI</h3>
           <Link to="/slide">Slide Images</Link>
           <Link to="/carousel">Carousel</Link>
-          <Link to="/file-uploader">File Uploader</Link>
           <Link to="/editor">Editor</Link>
+          <Link to="/file-uploader">File Uploader</Link>
           <Link to="/toast">Toast</Link>
         </section>
         <section>
