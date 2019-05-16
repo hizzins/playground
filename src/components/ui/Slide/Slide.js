@@ -132,10 +132,10 @@ Slide.propTypes = {
 
 Slide.defaultProps = {
   slides: [
-        {"id": "slide1", "image": "background-1.jpg", "alt": "100% 웹브라우저 화상회의"},
-        {"id": "slide2", "image": "background-2.jpg", "alt": "특허받은 회의실 객체를 이용한 ‘LOUNGE’ UX"},
-        {"id": "slide3", "image": "background-3.jpg", "alt": "서로의 이해도를 높이는 화면 공유"},
-        {"id": "slide4", "image": "background-4.jpg", "alt": "협업의 필수, 문서 공유"}
+        {"id": "slide1", "image": "background-1.jpg", "alt": "프라하"},
+        {"id": "slide2", "image": "background-2.jpg", "alt": "잘츠브루크1"},
+        {"id": "slide3", "image": "background-3.jpg", "alt": "코블렌츠"},
+        {"id": "slide4", "image": "background-4.jpg", "alt": "잘츠브루크2"}
       ]
 };
 
