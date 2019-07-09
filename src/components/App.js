@@ -8,6 +8,7 @@ import {
   NotFoundPage,
   RichEditorPage,
   SlidePage,
+  StackPage,
   ToastPage,
   TodoPage,
   YoutubePage,
@@ -27,6 +28,7 @@ const App = () => {
           <Route path='/editor' component={RichEditorPage} />
           <Route path='/file-uploader' component={FileUploaderPage} />
           <Route path='/slide' component={SlidePage} />
+          <Route path='/stack' component={StackPage} />
           <Route path='/toast' component={ToastPage} />
           <Route path='/todo' component={TodoPage} />
           <Route path='/WebrtcCameraPage' component={WebrtcCameraPage} />

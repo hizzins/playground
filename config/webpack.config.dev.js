@@ -26,13 +26,19 @@ module.exports = {
   resolve: {
     alias: {
       components: srcPath + '/components',
+      containers: srcPath + '/containers',
       contents: srcPath + '/contents',
+      helpers: srcPath + '/helpers',
       pages: srcPath + '/pages',
       store: srcPath + '/store',
-      containers: srcPath + '/containers'
     }
   },
-
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
+  },
   devServer: {
     hot: true,                 // 모듈만 체인지 (react-hot-loader 필요)
     inline: true,              // 핫 리로드 불가시 전체 번들링을 불러오기 위해 전체 리로딩 한다 include devServer to bundle
@@ -106,7 +112,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|ico)$/,
         use: [
           {
             loader: 'file-loader'

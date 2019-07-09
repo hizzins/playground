@@ -19,10 +19,11 @@ module.exports = async ({ config, mode }) => {
   config.resolve = {
     alias: {
       components: srcPath + '/components',
+      containers: srcPath + '/containers',
       contents: srcPath + '/contents',
+      helpers: srcPath + '/helpers',
       pages: srcPath + '/pages',
       store: srcPath + '/store',
-      containers: srcPath + '/containers'
 
     }
   };

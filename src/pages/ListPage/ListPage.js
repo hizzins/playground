@@ -16,10 +16,11 @@ const ListPage = () => {
         </section>
         <section>
           <h3>Practice</h3>
-          <Link to="/youtube">Youtube</Link>
-          <Link to="/WebrtcCameraPage">webRTCCapture</Link>
           <Link to="/counter">CounterPage</Link>
           <Link to="/todo">TodoPage</Link>
+          <Link to="/stack">Stack</Link>
+          <Link to="/WebrtcCameraPage">webRTCCapture</Link>
+          <Link to="/youtube">Youtube</Link>
         </section>
       </div>
       <div className="footer">

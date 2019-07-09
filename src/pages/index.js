@@ -4,6 +4,7 @@ export { default as ListPage } from './ListPage/ListPage';
 export { default as RichEditorPage } from './RichEditorPage/RichEditorPage';
 export { default as ToastPage } from './ToastPage/ToastPage';
 export { default as SlidePage } from './SlidePage/SlidePage';
+export { default as StackPage } from './StackPage/StackPage';
 export { default as TodoPage } from './TodoPage/TodoPage';
 
 export { default as CounterPage } from './CounterPage/CounterPage';
