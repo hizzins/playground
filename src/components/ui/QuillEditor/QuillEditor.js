@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import ReactQuill, { Quill } from 'react-quill'; // ES6
 import { ImageDrop } from 'quill-image-drop-module';
 import ImageResize from 'quill-image-resize-module';
+import Focus from 'quill-focus';
 import 'react-quill/dist/quill.snow.css';
 import './QuillEditor.scss'
 
 Quill.register('modules/imageDrop', ImageDrop);
 Quill.register('modules/imageResize', ImageResize);
+Quill.register('modules/focus', Focus);
 
 class QuillEditor extends React.Component {
   constructor (props) {
@@ -57,6 +59,9 @@ QuillEditor.modules = {
   imageDrop: true,
   imageResize: {
     displaySize: true,
+  },
+  focus: {
+      focusClass: 'focused-blot' // Defaults to .focused-blot.
   }
 };
 /*
@@ -66,6 +71,7 @@ QuillEditor.modules = {
 QuillEditor.formats = [
   'header', 'font', 'size',
   'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'color', 'background',
   'list', 'bullet', 'indent',
   'link', 'image', 'video'
 ];
