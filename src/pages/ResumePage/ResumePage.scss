@@ -1,0 +1,105 @@
+.resume-page {
+  padding: 0 15px;
+
+  h1, h3, h4 {
+    margin: 32px 0 10px 0;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    margin: 40px 0 10px 0;
+    font-size: 36px;
+    border-bottom: 1px solid #484848;
+  }
+
+  h3 {
+    font-size: 26px;
+  }
+
+  .title {
+    border-bottom: 2px solid pink;
+  }
+
+  .sub-title {
+    font-size: 16px;
+  }
+
+  .subject {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 22px;
+
+    &.technologies {
+      margin-top: 0;
+    }
+  }
+
+  .introduce {
+    margin-bottom: 40px;
+  }
+
+  .technologies-item {
+    span {
+      padding: 2px 10px;
+      border: 1px solid #efefef;
+      border-radius: 6px;
+    }
+  }
+
+  .redmine-logo {
+    margin: 0 20px 0 2px;
+  }
+
+  .experience-content {
+    display: flex;
+    width: 100%;
+    padding: 40px 0;
+    border-top: 1px solid #efefef;
+
+    &:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .left-info, .right-info {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
+    .left-info {
+      width: 240px;
+      font-size: 28px;
+
+      .term {
+        font-size: 18px;
+      }
+    }
+    .right-info {
+      width: calc(100% - 240px);
+      padding-left: 40px;
+
+      .job-subject {
+        margin-top: 20px;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      .stack {
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      h4 {
+        margin: 0 0 15px 0;
+        font-size: 26px;
+        font-weight: normal;
+      }
+    }
+
+  }
+}

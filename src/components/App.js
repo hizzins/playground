@@ -6,6 +6,7 @@ import {
   FileUploaderPage,
   ListPage,
   NotFoundPage,
+  ResumePage,
   RichEditorPage,
   SlidePage,
   StackPage,
@@ -22,6 +23,7 @@ const App = () => {
       <PageTemplate />
       <div className="wrap-contents">
         <Switch>
+          <Route path='/Resume' component={ResumePage} />
           <Route exact path='/' component={ListPage} />
           <Route path='/carousel' component={CarouselPage} />
           <Route path='/counter' component={CounterPage} />

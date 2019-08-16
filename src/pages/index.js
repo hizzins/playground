@@ -7,6 +7,8 @@ export { default as SlidePage } from './SlidePage/SlidePage';
 export { default as StackPage } from './StackPage/StackPage';
 export { default as TodoPage } from './TodoPage/TodoPage';
 
+export { default as ResumePage } from './ResumePage/ResumePage';
+
 export { default as CounterPage } from './CounterPage/CounterPage';
 export { default as WebrtcCameraPage } from './WebrtcCameraPage/WebrtcCameraPage';
 export { default as YoutubePage } from './YoutubePage/YoutubePage';
