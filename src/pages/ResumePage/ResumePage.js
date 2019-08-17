@@ -4,6 +4,7 @@ import RedmineLogo from 'contents/image/redmine-logo.png';
 import ZeplinLogo from 'contents/image/zeplin-logo.png';
 import EslintLogo from 'contents/image/eslint-logo.png';
 import PrettierLogo from 'contents/image/prettier-logo.png';
+import SlackLogo from 'contents/image/slack-logo.png';
 
 const ResumePage = () => {
   return (
@@ -42,6 +43,7 @@ const ResumePage = () => {
       </svg>
       <img src={RedmineLogo} className="redmine-logo" height="46px" alt="redmine logo" />
       <img src={ZeplinLogo} className="zeplin-logo" height="46px" alt="zeplin logo" />
+      <img src={SlackLogo} className="slack-logo" height="46px" alt="zeplin logo" />
       <h3 className="subject">Tools for Quality</h3>
       <img src={EslintLogo} className="zeplin-logo" height="46px" alt="zeplin logo" />
       <img src={PrettierLogo} className="zeplin-logo" height="48px" alt="zeplin logo" />
