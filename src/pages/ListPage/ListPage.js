@@ -7,10 +7,6 @@ const ListPage = () => {
     <div className="wrap-main">
       <div className="menu">
         <section>
-          <h3>Resume</h3>
-          <Link to="/resume">Resume</Link>
-        </section>
-        <section>
           <h3>UI</h3>
           <Link to="/slide">Slide Images</Link>
           <Link to="/carousel">Carousel</Link>
