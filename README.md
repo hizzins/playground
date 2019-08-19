@@ -8,7 +8,3 @@
 ```js
 npm run start
 ```
-## execute storybook
-```js
-npm run storybook
-```
