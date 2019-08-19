@@ -1,146 +1,46 @@
-import React, { Component } from 'react';
+import React, { useEffect, createRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import produce from 'immer';
 import { Button } from 'components/common/Button';
-import Spinner from 'components/common/Spinner';
 import styles from './UploadImages.module.scss';
 
-class UploadImages extends Component {
-  constructor(props) {
-    super(props);
-    this.state = props.filesInfo;
-    this.maxFileSize = 1048576 * props.maxSize;
-    this.totalSize = 0;
-  }
+const UploadImages = ({
+  filesInfo,
+  customClass,
+  placeholder,
+  customPreview,
+  multiple,
+  maxSize,
+  showSize,
+  onChange,
+}) => {
+  const [errorMessage, setErrorMessage] = useState('');
+  const bytePerMegabyte = 1048576;
+  // const maxFileSize = bytePerMegabyte * maxSize;
+  const { files, totalSize } = filesInfo;
+  const [fileUploader] = useState(() => createRef());
+  const fileSize =
+    totalSize < bytePerMegabyte
+      ? Math.ceil((totalSize * 100) / bytePerMegabyte) / 100
+      : Math.floor(totalSize / bytePerMegabyte);
 
-  componentWillUpdate(nextProps) {
-    const { customPreview, filesInfo } = nextProps;
-    const { files } = this.state;
-    const isDelete = filesInfo.files.length && filesInfo.files.length < files.length;
-
-    if (customPreview) {
-      this.setState = { filesInfo };
-
-      if (isDelete) {
-        this.fileUploader.value = '';
-      }
-    }
-
-    return true;
-  }
-
-  componentWillUnmount() {
-    const { revokeObjectURL } = this;
-    const { files } = this.state;
-
-    for (const file of files) {
-      revokeObjectURL(file.url);
-    }
-  }
-
-  startRead = (e) => {
-    console.log('change');
-    const { getFile } = this;
-    const { files } = e.target;
-
-    if (files) {
-      for (let i = 0; i < files.length; i += 1) {
-        const reader = new FileReader();
-
-        getFile(files[i], reader);
-      }
-    }
-  };
-
-  getFile = (readFile, reader) => {
-    const { maxFileSize, updateProgress, onError, onLoaded } = this;
-    const { maxSize } = this.props;
-    const { totalSize } = this.state;
-
-    if (totalSize + readFile.size > maxFileSize) {
-      alert(`최대 ${maxSize}MB까지 업로드 가능합니다.`);
-      this.fileUploader.value = '';
-      return false;
-    }
-
-    reader.uploadedFile = readFile;
-    reader.size = readFile.size;
-    reader.readAsArrayBuffer(readFile);
-    reader.onprogress = updateProgress;
-    reader.onload = onLoaded;
-    reader.onerror = onError;
-
-    return true;
-  };
-
-  updateProgress = (e) => {
-    console.log('+++handleUpdateProgress', e);
-    if (e.lengthComputable) {
-      // evt.loaded and evt.total are ProgressEvent properties
-      const isCompelete = e.loaded === e.total;
-      if (isCompelete) {
-        console.log('완료');
-      }
-    }
-  };
-
-  onLoaded = (e) => {
-    // Obtain the read file data
-    const fileReader = e.target;
-    const fileData = fileReader.result;
-    const { getMimeType, makeHeader } = this;
-    const { files, totalSize } = this.state;
-    const { onChange, multiple, customPreview } = this.props;
-    const fileSize = fileReader.size;
-    const newTotalSize = multiple ? totalSize + fileSize : fileSize;
-
-    const arrayBufferView = new Uint8Array(fileData);
-    const blob = new Blob([arrayBufferView], { type: 'image/jpeg' });
+  const revokeObjectURL = (imageUrl) => {
     const urlCreator = window.URL || window.webkitURL;
-    const imageUrl = urlCreator.createObjectURL(blob);
-    const newFile = { key: new Date().getTime(), url: imageUrl, size: fileSize };
-    const newFiles = multiple ? [...files, newFile] : [newFile];
-    const newState = { files: newFiles, totalSize: newTotalSize };
-    const fileArr = new Uint8Array(fileData).subarray(0, 4);
-    const header = makeHeader(fileArr);
-    const mimeType = getMimeType(header);
-    console.log('여기***', newState);
-    if (mimeType !== 'image/png' && mimeType !== 'image/gif' && mimeType !== 'image/jpeg') {
-      alert('이미지파일만 업로드 됩니다.(jpg, png, gif)');
-    } else {
-      onChange(newState);
-      if (!customPreview) this.setState(newState);
-    }
-    this.fileUploader.value = '';
+
+    urlCreator.revokeObjectURL(imageUrl);
   };
-
-  onError = (e) => {
-    console.log('onError');
-    if (e.target.error.name === 'NotReadableError') {
-      // The file could not be read
-    }
-  };
-
-  onDelete = (e, key) => {
-    console.log('onDelete', e, key);
-    const { revokeObjectURL } = this;
-    const { files, totalSize } = this.state;
-    const newFiles = [];
-    let newTotalSize = 0;
-
-    for (const file of files) {
-      if (file.key !== key) {
-        newFiles.push(file);
-      } else {
-        newTotalSize = totalSize - file.size;
-        // 메모리 해제
-        revokeObjectURL(key);
+  useEffect(
+    () => () => {
+      if (filesInfo.files) {
+        for (const file of filesInfo.files) {
+          revokeObjectURL(file.url);
+        }
       }
-    }
-    this.fileUploader.value = '';
-    this.setState({ files: newFiles, totalSize: newTotalSize });
-  };
+    },
+    []
+  );
 
-  makeHeader = (fileArr) => {
+  const makeHeader = (fileArr) => {
     let header = '';
 
     for (let i = 0; i < fileArr.length; i += 1) {
@@ -150,7 +50,7 @@ class UploadImages extends Component {
     return header;
   };
 
-  getMimeType = (headerString) => {
+  const getMimeType = (headerString) => {
     let type = 'unknown';
     switch (headerString) {
       case '89504e47':
@@ -171,64 +71,173 @@ class UploadImages extends Component {
     return type;
   };
 
-  revokeObjectURL = (imageUrl) => {
-    const urlCreator = window.URL || window.webkitURL;
-
-    urlCreator.revokeObjectURL(imageUrl);
+  const updateProgress = (e) => {
+    console.log('+++handleUpdateProgress', e);
+    if (e.lengthComputable) {
+      // evt.loaded and evt.total are ProgressEvent properties
+      const isCompelete = e.loaded === e.total;
+      if (isCompelete) {
+        console.log('완료');
+      }
+    }
   };
 
-  render() {
-    const { startRead, maxFileSize, onDelete } = this;
-    const { customClass, placeholder, customPreview, multiple, showSize } = this.props;
-    const { files, totalSize } = this.state;
-    const fileSize =
-      totalSize < 1048576 ? Math.ceil((totalSize * 100) / 1048576) / 100 : Math.floor(totalSize / 1048576);
+  const factorFileData = (fileReader) => {
+    // Obtain the read file data
+    const fileData = fileReader.result;
+    const fileArr = new Uint8Array(fileData).subarray(0, 4);
+    const header = makeHeader(fileArr);
+    const mimeType = getMimeType(header);
 
-    return (
-      <div className={`${styles.wrapImageUpload} upload-image`}>
-        {showSize && <div className={styles.sizeProgress}>{`${fileSize} / ${maxFileSize / 1048576} MB`}</div>}
+    if (mimeType !== 'image/png' && mimeType !== 'image/gif' && mimeType !== 'image/jpeg') {
+      // alert('이미지파일만 업로드 됩니다.(jpg, png, gif)');
+      setErrorMessage('이미지파일만 업로드 됩니다.(jpg, png, gif)');
+      return { error: '이미지파일만 업로드 됩니다.(jpg, png, gif)' };
+    }
+    return { success: fileReader };
+  };
 
-        <div className={`${styles.uploadImage} ${customClass} wrap-upload-input`}>
-          <input
-            multiple={multiple}
-            className="upload-input"
-            type="file"
-            onChange={startRead}
-            ref={(ref) => {
-              this.fileUploader = ref;
-            }}
-          />
-          {placeholder}
-        </div>
-        {!customPreview && (
-          <div className="preview">
-            <ul>
-              {files.map((item) => {
-                return (
-                  <li className="thumbnail" key={item.key}>
-                    <Spinner animation="grow" variant="cancle" />
-                    <img src={item.url} alt="" />
-                    <Button
-                      type="transparent"
-                      onClick={(e) => {
-                        onDelete(e, item.key);
-                      }}
-                    >
-                      <span className="rsicon-close" />
-                    </Button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
-      </div>
-    );
+  const getFile = (readFile) => {
+    // const { totalSize } = filesInfo;
+
+    // if (totalSize + readFile.size > maxFileSize) {
+    //   alert(`최대 ${maxSize}MB까지 업로드 가능합니다.`);
+    //   fileUploader.current.value = '';
+    //   return false;
+    // }
+
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.uploadedFile = readFile;
+      reader.size = readFile.size;
+      reader.readAsArrayBuffer(readFile);
+      reader.onprogress = updateProgress;
+      reader.onload = (e) => {
+        resolve(e.target);
+      };
+      reader.onerror = reject;
+    });
+  };
+
+  const makeFilesInfo = (fileReaders) => {
+    const newFiles = [];
+    let newSize = 0;
+
+    for (const file of fileReaders) {
+      const { size, result } = file;
+      const arrayBufferView = new Uint8Array(result);
+      const blob = new Blob([arrayBufferView], { type: 'image/jpeg' });
+      const urlCreator = window.URL || window.webkitURL;
+      const imageUrl = urlCreator.createObjectURL(blob);
+      const newFile = { key: new Date().getTime(), url: imageUrl, size };
+      newFiles.push(newFile);
+      newSize += fileSize;
+    }
+
+    if (multiple) {
+      const newTotalSize = newSize + totalSize;
+      const newState = produce(filesInfo, (draft) => {
+        draft.files.push(...newFiles);
+        draft.totalSize = newTotalSize;
+      });
+      return newState;
+    }
+    return { files: newFiles, totalSize: newSize };
+  };
+
+  async function startRead(e) {
+    const uploadFiles = e.target.files;
+    const results = [];
+    const successData = [];
+
+    // initialize error message
+    setErrorMessage('');
+
+    if (uploadFiles) {
+      // 파일리더 정보 읽기
+      for (let i = 0; i < uploadFiles.length; i += 1) {
+        const reader = new FileReader();
+        const getFileInfo = getFile(uploadFiles[i], reader);
+        results.push(getFileInfo);
+      }
+    }
+
+    const complateData = await Promise.all(results);
+
+    for (const data of complateData) {
+      const d = factorFileData(data);
+      if (d.success) {
+        successData.push(d.success);
+      }
+    }
+
+    fileUploader.current.value = '';
+    onChange(makeFilesInfo(successData));
   }
-}
+
+  const onDelete = (e, key) => {
+    console.log('onDelete', e, key);
+    const newFiles = [];
+    let newTotalSize = 0;
+
+    // initialize error message
+    setErrorMessage('');
+
+    for (const file of files) {
+      if (file.key !== key) {
+        newFiles.push(file);
+      } else {
+        newTotalSize = totalSize - file.size;
+        // 메모리 해제
+        revokeObjectURL(key);
+      }
+    }
+    fileUploader.current.value = '';
+    onChange({ files: newFiles, totalSize: newTotalSize });
+  };
+
+  return (
+    <div className={`${styles.wrapImageUpload} upload-image`}>
+      {showSize && (
+        <div
+          className={`${styles.sizeProgress} ${fileSize > maxSize ? 'error' : ''}`}
+        >{`${fileSize} / ${maxSize} MB`}</div>
+      )}
+
+      <div className={`${styles.uploadImage} ${customClass} wrap-upload-input`}>
+        <input multiple={multiple} className="upload-input" type="file" onChange={startRead} ref={fileUploader} />
+        {placeholder}
+      </div>
+      <p className="error">{errorMessage}</p>
+      {!customPreview && (
+        <div className="preview">
+          <ul>
+            {files.map((item) => {
+              console.log('맵', item, item[0], item.url);
+              return (
+                <li className="thumbnail" key={item.key}>
+                  <img src={item.url} alt="" />
+                  <Button
+                    type="transparent"
+                    onClick={(e) => {
+                      onDelete(e, item.key);
+                    }}
+                  >
+                    <span className="ricon-close" />
+                  </Button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+};
 
 UploadImages.propTypes = {
-  filesInfo: PropTypes.shape({ files: PropTypes.array.isRequired, totalSize: PropTypes.number.isRequired }),
+  filesInfo: PropTypes.shape({ files: PropTypes.array, totalSize: PropTypes.number }),
   customClass: PropTypes.string,
   placeholder: PropTypes.string,
   customPreview: PropTypes.bool,
@@ -242,7 +251,7 @@ UploadImages.defaultProps = {
   filesInfo: { files: [], totalSize: 0 },
   customClass: '',
   showSize: false,
-  placeholder: '',
+  placeholder: '파일을 여기에 드래그 앤 드롭 또는 클릭하여 불러오기',
   multiple: false,
   customPreview: false,
   maxSize: 30,

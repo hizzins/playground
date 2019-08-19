@@ -60,6 +60,11 @@ $upload-height: 80px;
   margin-bottom: 3px;
 }
 
+:global .error {
+  color: red;
+}
+
+
 .uploadImage {
   display: flex;
   justify-content: center;
