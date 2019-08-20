@@ -14,7 +14,10 @@ const ResumePage = () => {
       안녕하세요. 웹 프론트엔드 개발자 신희진입니다.<br />
       UI 인터랙션에 관심이 많고 더 나은 디자인과 사용성을 갖춘 UI/UX를 구현하고자 노력하는 개발자입니다.<br />
       정형화된 것보다 참신하고 새로운 웹 인터페이스에 관심이 많습니다.<br />
-        여러분야 사람들과 커뮤니케이션을 통해 더 나은 서비스로 발전시키는 것에 보람을 느끼며 일하고 있습니다.</p>
+        여러분야 사람들과 커뮤니케이션을 통해 더 나은 서비스로 발전시키는 것에 보람을 느끼며 일하고 있습니다.
+        아래 요약된 기술들은 업무시 주로 사용했던 기술들 요약이며 이밖에도 개인 프로젝트를 통해
+        socket을 이용한 채팅프로그램 및 node, express, mongoDB를 이용하여 간단한 CRUD 풀스택 개발 경험이 있습니다.
+      </p>
       <h2 className="sumary">Summary</h2>
       <h3 className="subject technologies">Technologies</h3>
       <p className="technologies-item"><span>HTML5</span> <span>CSS3</span> <span>javaScript</span> <span>jQuery</span> <span>ES6+</span> <span>React</span> <span>Redux</span> <span>Redux-thunk</span> <span>Sass</span> <span>gulp</span> <span>webpack</span></p>
@@ -58,8 +61,12 @@ const ResumePage = () => {
             <h4 className="job-subject">Remote Seminar 신규개발</h4>
             <div className="term">2019.04 ~ 2019.08</div>
             <p>Remote Seminar 신규 프로젝트를 진행하여 설계부터 컴포넌트 개발에 참여하였습니다.
-              좀더 재사용 가능한 컴포넌트 구현에 중점을 두고 storybook을 사용하여 UI컴포넌트를 만들었습니다.
-              <p className="stack">React, immer, storybook</p>
+              환경세팅은 CRA로 손쉽게 구축하고 추가 설정은 eject하지 않고 craco를 사용하여 파일의 복잡도를 높이지 않고 간단하게 추가설정 할 수 있었습니다.
+              또한, 이번 프로젝트에서는 storybook을 검토 및 도입하여 재사용가능한 component에 중점을 두고 개발했습니다.
+              storybook을 사용하면서는 컴포넌트에 propTypes를 작성하면 문서에 자동으로 기입되는 addon이 제공되어
+              컴포넌트의 동작과 문서를 동시에 확인할 수 있어 다른사람이 작성한 컴포넌트도 비교적 손쉽게 파악이 가능해 공통으로 사용되는 컴포넌트에 효과적이였습니다.
+              css 관련하여서는 CSS Module을 처음 사용하였는데 손쉬운 사용법으로 class 네이밍에 드는 에너지를 아낄 수 있었습니다.
+              <p className="stack">React, immer, storybook, CSS Module</p>
             </p>
 
             <h4 className="job-subject">Remote Seminar Youtube 영상 공유 poc개발</h4>
@@ -73,19 +80,30 @@ const ResumePage = () => {
             <h4 className="job-subject">Remotemeeting 우리카드 서버납품</h4>
             <div className="term">2018.12 ~ 2019.02</div>
             <p>기존에 Remotemeeting 서비스를 우리카드사의 요구사항에 맞게 커스터 마이즈하는 작업을 했습니다.
-            처음으로 하는 서버납품 서비스로 ASP와 서버납품의 구조설계 및 99개의 테마를 언어별로 관리할 수 있는 어민 페이지를 신규 개발했습니다.
+            처음으로 하는 서버납품 서비스로 ASP와 서버납품의 구조설계 및 99개의 테마를 언어별로 관리할 수 있는 어드민 페이지를 신규 개발했습니다.
+              서버납품은 보안에 민감한 프로젝트로 웹보안 관련하여 데이터를 서버에 전송시 태그는 엔티티코드로 치환하여 보내고
+              입력란에 특수문자 입력을 제한하는 등의 작업을 했습니다.
+              ckeditor의 데이터 또한 태그를 엔티티 코드로 치환해서 전송하였는데 에디터의 스타일을 위한 태그뿐만 아니라 사용자가 입력한 태그 또한 입력한 그대로
+              화면에 보여주기 위해 고민하던중, 사용자가 입력한 태그는 엔티티코드를 살짝 변형하여 구분되도록 아이디어를 내어 사용자가 입력한 태그까지 완벽하게 구현하였습니다.
             </p>
 
             <h4 className="job-subject">Remotemeeting 예약 개발</h4>
             <div className="term">2018.09 ~ 2018.11</div>
             <p>화상회의를 예약하고 스케쥴을 관리할 수 있는 페이지입니다. 카드뷰와 테이블뷰 두가지 UI를 제공했으며
-            카드뷰 페이지는 오늘날짜로 스크롤되어 상,하 스크롤시 추가 데이터 불러오는 기능을 구현하였습니다.</p>
+            카드뷰 페이지는 오늘날짜로 스크롤되어 상,하 스크롤시 추가 데이터 불러오는 기능을 구현하였습니다.
+              위로 스크롤시 preppend형태로 데이터가 추가되는데 이때 데이터가 추가되기 전에 보던 위치로 스크롤을 조정해줘야 하는 이슈가 있었으나
+              컴포넌트 업데이트시 이전 데이터의 최상위 정보를 상태값으로 관리하여 리액트 16버전에 추가된 생명주기인 getSnapshotBeforeUpdate를 사용하여
+              스크롤을 유지하도록 구현하였습니다. 데이터 상태가 변경될때마다 컴포넌트가 업데이트되어 스크롤을 재조정해주는 부분에 있어 어려움을 겪었던 프로젝트 입니다.
+            </p>
             <p className="stack">React, Redux, axios</p>
 
             <h4 className="job-subject">Remotemeeting 히스토리 개발</h4>
             <div className="term">2018.04 ~ 2018.08</div>
-            <p>화상회의 중 기록한 데이터(회의록, 캡처이미지뷰어, 녹화뷰어)들을 관리하는 히스토리 페이지를 개발했습니다.</p>
-            <p className="stack">React, Redux, axios, videojs, ckeditor</p>
+            <p>화상회의 중 기록한 데이터(회의록, 캡처이미지뷰어, 녹화뷰어)들을 관리하는 히스토리 페이지를 개발했습니다.
+              복잡한 데이터나 array형태의 데이터인 경우 불변함을 유지하기 위해 까다로운 데이터가공이 필요했으나
+              immer를 사용하고나서 훨씬 수월하게 상태관리를 할 수 있었습니다.
+            </p>
+            <p className="stack">React, Redux, axios, videojs, ckeditor, immer</p>
 
             <h4 className="job-subject">Remotemeeting 랜딩페이지 개발</h4>
             <div className="term">2017.11 ~ 2018.11</div>
@@ -94,7 +112,7 @@ const ResumePage = () => {
             <h4 className="job-subject">Remotemeeting Admin 사이트 신규개발 및 유지보수</h4>
             <div className="term">2016.01 ~ 2017.08</div>
             <p>화상회의 서비스인 Remotemeeting 관련 데이터를 관리하는 어드민 사이트입니다.(대시보드, 사용자관리, box관리, 통계, 결제관리, 회의설정등등)
-              <br />혼자 도맡아서 진행한 프로젝트이며 UI/UX작업을 비롯하여 api 연동하는 작업을 주로 했습니다.</p>
+              <br />전체 사이트를 혼자 도맡아서 진행한 프로젝트이며 UI/UX작업을 비롯하여 api 연동하는 작업을 주로 했습니다.</p>
             <p className="stack">HTML, CSS, jQuery, javaScript, bootstrap, handlebars.js, chartjs, Gulp, SASS</p>
 
             <h4 className="job-subject">홈페이지 개발</h4>
