@@ -10,7 +10,7 @@ const Header = ({title}) => (
   </header>
 );
 
-Header.deraultProps = {
+Header.defaultProps = {
   title: "Hizzin's playground"
 };
 
