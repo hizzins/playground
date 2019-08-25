@@ -1,22 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './ResumePage.scss';
+import { Button } from 'components/ui/Button';
+import Dialog from 'components/ui/Dialog';
 import RedmineLogo from 'contents/image/redmine-logo.png';
 import ZeplinLogo from 'contents/image/zeplin-logo.png';
 import EslintLogo from 'contents/image/eslint-logo.png';
 import PrettierLogo from 'contents/image/prettier-logo.png';
 import SlackLogo from 'contents/image/slack-logo.png';
+import MaterialIcon from 'material-icons-react';
+
 
 const ResumePage = () => {
+  const onHideDialog = () => {
+    console.log('onHide');
+  };
   return (
     <div className="resume-page">
+      <Dialog size="large" contents="다이얼로그" onHide={onHideDialog} />
       <h1>신희진 <span className="sub-title">Web Frontend developer</span></h1>
       <p className="introduce">
       안녕하세요. 웹 프론트엔드 개발자 신희진입니다.<br />
       UI 인터랙션에 관심이 많고 더 나은 디자인과 사용성을 갖춘 UI/UX를 구현하고자 노력하는 개발자입니다.<br />
       정형화된 것보다 참신하고 새로운 웹 인터페이스에 관심이 많습니다.<br />
-        여러분야 사람들과 커뮤니케이션을 통해 더 나은 서비스로 발전시키는 것에 보람을 느끼며 일하고 있습니다.
+        여러분야 사람들과 커뮤니케이션을 통해 더 나은 서비스로 발전시키는 것에 보람을 느끼며 일하고 있습니다.<br />
         아래 요약된 기술들은 업무시 주로 사용했던 기술들 요약이며 이밖에도 개인 프로젝트를 통해
-        socket을 이용한 채팅프로그램 및 node, express, mongoDB를 이용하여 간단한 CRUD 풀스택 개발 경험이 있습니다.
+        socket을 이용한 채팅프로그램 및 node, express, mongoDB를 이용하여 간단한 CRUD back-end API 개발 경험이 있습니다.
       </p>
       <h2 className="sumary">Summary</h2>
       <h3 className="subject technologies">Technologies</h3>
@@ -87,7 +95,9 @@ const ResumePage = () => {
               화면에 보여주기 위해 고민하던중, 사용자가 입력한 태그는 엔티티코드를 살짝 변형하여 구분되도록 아이디어를 내어 사용자가 입력한 태그까지 완벽하게 구현하였습니다.
             </p>
 
-            <h4 className="job-subject">Remotemeeting 예약 개발</h4>
+            <h4 className="job-subject">Remotemeeting 예약 개발<Button type="transparent" size="auto" onClick={() => {console.log('클');}}>
+              <MaterialIcon icon="image_search" size={30} /></Button>
+            </h4>
             <div className="term">2018.09 ~ 2018.11</div>
             <p>화상회의를 예약하고 스케쥴을 관리할 수 있는 페이지입니다. 카드뷰와 테이블뷰 두가지 UI를 제공했으며
             카드뷰 페이지는 오늘날짜로 스크롤되어 상,하 스크롤시 추가 데이터 불러오는 기능을 구현하였습니다.

@@ -86,10 +86,18 @@
       padding-left: 40px;
 
       .job-subject {
+        display: flex;
+        align-items: center;
         margin-top: 20px;
 
         &:first-child {
           margin-top: 0;
+        }
+
+        .material-icons {
+          line-height: 40px;
+          color: #54c4e2;
+          cursor: pointer;
         }
       }
 

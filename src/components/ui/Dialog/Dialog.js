@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import DialogBasic from './DialogBasic';
-import styles from './Dialog.module.scss';
+import './Dialog.scss';
 
 class Dialog extends Component {
   componentDidMount() {
@@ -11,7 +11,7 @@ class Dialog extends Component {
     document.body.addEventListener('keyup', onEscEvent);
 
     setTimeout(() => {
-      dialogWrap.classList.add(styles.on);
+      dialogWrap.classList.add('on');
     }, 0);
   }
 
@@ -35,7 +35,7 @@ class Dialog extends Component {
     console.log('여기', children);
     return ReactDOM.createPortal(
       <div
-        className={styles.dialogWrap}
+        className="dialogWrap"
         ref={(ref) => {
           this.dialogWrap = ref;
         }}
@@ -75,7 +75,7 @@ Dialog.propTypes = {
 
 Dialog.defaultProps = {
   type: 'basic',
-  size: 'regular',
+  size: 'regular', // large
   title: '',
   contents: '',
 };
