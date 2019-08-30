@@ -10,6 +10,7 @@ import {
   RichEditorPage,
   SlidePage,
   StackPage,
+  StatAnimationPage,
   ToastPage,
   TodoPage,
   YoutubePage,
@@ -27,6 +28,7 @@ const App = () => {
       <Route path='/editor' component={() => <PageTemplate><RichEditorPage /></PageTemplate>} />
       <Route path='/file-uploader' component={() => <PageTemplate><FileUploaderPage /></PageTemplate>} />
       <Route path='/slide' component={() => <PageTemplate><SlidePage /></PageTemplate>} />
+      <Route path='/stat' component={() => <PageTemplate><StatAnimationPage /></PageTemplate>} />
       <Route path='/stack' component={() => <PageTemplate><StackPage /></PageTemplate>} />
       <Route path='/toast' component={() => <PageTemplate><ToastPage /></PageTemplate>} />
       <Route path='/todo' component={() => <PageTemplate><TodoPage /></PageTemplate>} />

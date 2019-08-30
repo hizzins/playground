@@ -31,11 +31,11 @@ class Dialog extends Component {
 
   render() {
     const { onKeyUp } = this;
-    const { type, title, contents, children, size, onHide } = this.props;
-    console.log('여기', children);
+    const { type, title, contents, children, size, onHide, customClass } = this.props;
+    console.log('여기', children, contents);
     return ReactDOM.createPortal(
       <div
-        className="dialogWrap"
+        className={`dialogWrap ${customClass}`}
         ref={(ref) => {
           this.dialogWrap = ref;
         }}
@@ -68,7 +68,8 @@ Dialog.propTypes = {
   type: PropTypes.string,
   size: PropTypes.string,
   title: PropTypes.string,
-  contents: PropTypes.string,
+  customClass: PropTypes.string,
+  contents: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   children: PropTypes.node.isRequired,
   onHide: PropTypes.func.isRequired,
 };
@@ -78,6 +79,7 @@ Dialog.defaultProps = {
   size: 'regular', // large
   title: '',
   contents: '',
+  customClass: ''
 };
 
 export default Dialog;

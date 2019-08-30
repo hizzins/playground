@@ -5,6 +5,7 @@ export { default as RichEditorPage } from './RichEditorPage/RichEditorPage';
 export { default as ToastPage } from './ToastPage/ToastPage';
 export { default as SlidePage } from './SlidePage/SlidePage';
 export { default as StackPage } from './StackPage/StackPage';
+export { default as StatAnimationPage } from './StatAnimationPage/StatAnimationPage';
 export { default as TodoPage } from './TodoPage/TodoPage';
 
 export { default as ResumePage } from './ResumePage/ResumePage';
