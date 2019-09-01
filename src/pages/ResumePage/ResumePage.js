@@ -8,38 +8,50 @@ import EslintLogo from 'contents/image/eslint-logo.png';
 import PrettierLogo from 'contents/image/prettier-logo.png';
 import SlackLogo from 'contents/image/slack-logo.png';
 import MaterialIcon from 'material-icons-react';
+import ResumeImages from './ResumeImages';
 
-const DialogContents = () => {
+const DialogContents = ({imageURL}) => {
   return (
-    <div><h3>이미지 보기</h3><img alt="이미지 보기" width="650" src={require('contents/image/schedule.gif')} /></div>
+    <div><h3>이미지 보기</h3><img alt="이미지 보기" width="650" src={imageURL} /></div>
   )
 };
 
 class ResumePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {isVisible: false};
+    this.state = {dialog: {isVisible: false, content: ''}};
   }
 
-  onShowDialog = () => {
-    this.setState({isVisible: true});
+  onShowDialog = (content) => {
+    this.setState({dialog: {isVisible: true, content}});
   }
 
   onHideDialog = () => {
     console.log('onHide');
-    this.setState({isVisible: false});
+    this.setState({dialog: {isVisible: false}});
+  }
+
+  renderDialog = () => {
+    const { onHideDialog } = this;
+    const { content } = this.state.dialog;
+
+    return (
+      <Dialog
+        size="large"
+        customClass="resume-preview"
+        contents={<DialogContents imageURL={ResumeImages[content]} />}
+        onHide={onHideDialog} />
+    );
   }
 
   render() {
-    const { onShowDialog, onHideDialog } = this;
-    const { isVisible } = this.state;
+    const { onShowDialog, onHideDialog, renderDialog } = this;
+    const { isVisible } = this.state.dialog;
 
     return (
       <div className="resume-page">
         {
-          isVisible && (
-            <Dialog size="large" customClass="resume-preview" contents={<DialogContents />} onHide={onHideDialog} />
-          )
+          isVisible && renderDialog()
         }
         <h1>신희진 <span className="sub-title">Web Frontend developer</span></h1>
         <p className="introduce">
@@ -119,7 +131,8 @@ class ResumePage extends Component {
                 화면에 보여주기 위해 고민하던중, 사용자가 입력한 태그는 엔티티코드를 살짝 변형하여 구분되도록 아이디어를 내어 사용자가 입력한 태그까지 완벽하게 구현하였습니다.
               </p>
 
-              <h4 className="job-subject">Remotemeeting 예약 개발<Button type="transparent" size="auto" onClick={onShowDialog}>
+              <h4 className="job-subject">Remotemeeting 예약 개발
+                <Button type="transparent" size="auto" onClick={() => {onShowDialog('schedule')}}>
                 <MaterialIcon icon="image_search" size={30} /></Button>
               </h4>
               <div className="term">2018.09 ~ 2018.11</div>

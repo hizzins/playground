@@ -70,7 +70,7 @@ Dialog.propTypes = {
   title: PropTypes.string,
   customClass: PropTypes.string,
   contents: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   onHide: PropTypes.func.isRequired,
 };
 
@@ -79,7 +79,8 @@ Dialog.defaultProps = {
   size: 'regular', // large
   title: '',
   contents: '',
-  customClass: ''
+  customClass: '',
+  children: ''
 };
 
 export default Dialog;
