@@ -40,7 +40,9 @@ class ResumePage extends Component {
         size="large"
         customClass="resume-preview"
         contents={<DialogContents imageURL={ResumeImages[content]} />}
-        onHide={onHideDialog} />
+        onHide={onHideDialog}>
+        <button className="button cancel round" onClick={onHideDialog}>닫기</button>
+      </Dialog>
     );
   }
 
@@ -133,7 +135,8 @@ class ResumePage extends Component {
 
               <h4 className="job-subject">Remotemeeting 예약 개발
                 <Button type="transparent" size="auto" onClick={() => {onShowDialog('schedule')}}>
-                <MaterialIcon icon="image_search" size={30} /></Button>
+                  <MaterialIcon icon="image_search" size={30} />
+                </Button>
               </h4>
               <div className="term">2018.09 ~ 2018.11</div>
               <p>화상회의를 예약하고 스케쥴을 관리할 수 있는 페이지입니다. 카드뷰와 테이블뷰 두가지 UI를 제공했으며
@@ -144,7 +147,13 @@ class ResumePage extends Component {
               </p>
               <p className="stack">React, Redux, axios</p>
 
-              <h4 className="job-subject">Remotemeeting 히스토리 개발</h4>
+              <h4 className="job-subject">
+                Remotemeeting 히스토리 개발
+                <Button type="transparent" size="auto" onClick={() => {onShowDialog('history')}}>
+                  <MaterialIcon icon="image_search" size={30} />
+                </Button>
+              </h4>
+
               <div className="term">2018.04 ~ 2018.08</div>
               <p>화상회의 중 기록한 데이터(회의록, 캡처이미지뷰어, 녹화뷰어)들을 관리하는 히스토리 페이지를 개발했습니다.
                 복잡한 데이터나 array형태의 데이터인 경우 불변함을 유지하기 위해 까다로운 데이터가공이 필요했으나
@@ -156,7 +165,14 @@ class ResumePage extends Component {
               <div className="term">2017.11 ~ 2018.11</div>
               <p>랜딩페이지 개발 및 Remotemeeting 홈페이지 개발, 유지보수 </p>
 
-              <h4 className="job-subject">Remotemeeting Admin 사이트 신규개발 및 유지보수</h4>
+              <h4 className="job-subject">Remotemeeting Admin 사이트 신규개발 및 유지보수
+                <Button type="transparent" size="auto" onClick={() => {onShowDialog('dashboard')}}>
+                  <MaterialIcon icon="image_search" size={30} />
+                </Button>
+                <Button type="transparent" size="auto" onClick={() => {onShowDialog('stat')}}>
+                  <MaterialIcon icon="image_search" size={30} />
+                </Button>
+              </h4>
               <div className="term">2016.01 ~ 2017.08</div>
               <p>화상회의 서비스인 Remotemeeting 관련 데이터를 관리하는 어드민 사이트입니다.(대시보드, 사용자관리, box관리, 통계, 결제관리, 회의설정등등)
                 <br />전체 사이트를 혼자 도맡아서 진행한 프로젝트이며 UI/UX작업을 비롯하여 api 연동하는 작업을 주로 했습니다.</p>
