@@ -5,6 +5,7 @@ export { default as CarouselGroup} from './ui/CarouselGroup/CarouselGroup';
 export { default as Dropdown} from './ui/Dropdown/Dropdown';
 export { default as FileUploader} from './ui/FileUploader/FileUploader';
 export { default as ImageUploader} from './ui/ImageUploader/ImageUploader';
+export { default as ProgressBar} from './ui/Progress/ProgressBar';
 export { default as Slide} from './ui/Slide/Slide';
 export { default as QuillEditor} from './ui/QuillEditor/QuillEditor';
 export { default as Toast} from './ui/Toast/Toast';

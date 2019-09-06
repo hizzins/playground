@@ -1,18 +1,11 @@
 import React from 'react';
-import { ImageUploader, FileUploader } from 'components';
+import { ImageUploader, FileUploader, ProgressBar } from 'components';
 import MaterialIcon, {colorPalette} from 'material-icons-react';
-import './StatAnimationPage.scss';
 
 const StatAnimationPage = () => {
   return (
     <div className="page file-uploader-page">
-      <div className="detact-signal">
-        <div className="bar" />
-        <div className="bar" />
-        <div className="bar" />
-        <div className="bar" />
-        <div className="bar" />
-      </div>
+      <ProgressBar />
       <h4>Features</h4>
       <ul>
         <li><MaterialIcon icon="check" size={12} />UI animation</li>

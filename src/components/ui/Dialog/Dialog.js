@@ -12,7 +12,7 @@ class Dialog extends Component {
 
     setTimeout(() => {
       dialogWrap.classList.add('on');
-    }, 0);
+    }, 20);
   }
 
   componentWillUnmount() {

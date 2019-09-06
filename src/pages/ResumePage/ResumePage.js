@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ResumePage.scss';
-import { Button } from 'components/ui/Button';
+import { ProgressBar, Button } from 'components';
 import Dialog from 'components/ui/Dialog';
 import RedmineLogo from 'contents/image/redmine-logo.png';
 import ZeplinLogo from 'contents/image/zeplin-logo.png';
@@ -10,9 +10,19 @@ import SlackLogo from 'contents/image/slack-logo.png';
 import MaterialIcon from 'material-icons-react';
 import ResumeImages from './ResumeImages';
 
-const DialogContents = ({imageURL}) => {
+const DialogContents = ({video}) => {
   return (
-    <div><h3>이미지 보기</h3><img alt="이미지 보기" width="650" src={imageURL} /></div>
+    <div>
+      <h3>이미지 보기</h3>
+      {/*<img alt="이미지 보기" width="650" src={imageURL} />*/}
+
+      <div className="wrap-video">
+        <ProgressBar />
+        <video width="650" autoPlay muted>
+          <source src={video} type="video/mp4" />
+        </video>
+      </div>
+    </div>
   )
 };
 
@@ -34,12 +44,12 @@ class ResumePage extends Component {
   renderDialog = () => {
     const { onHideDialog } = this;
     const { content } = this.state.dialog;
-
+    console.log('++여기', ResumeImages[content]);
     return (
       <Dialog
         size="large"
         customClass="resume-preview"
-        contents={<DialogContents imageURL={ResumeImages[content]} />}
+        contents={<DialogContents video={ResumeImages[content]} />}
         onHide={onHideDialog}>
         <button className="button cancel round" onClick={onHideDialog}>닫기</button>
       </Dialog>

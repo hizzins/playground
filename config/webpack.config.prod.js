@@ -125,6 +125,16 @@ module.exports = {
         ]
       },
       {
+        test: /\.mp4/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            mimtetype: 'video/mp4',
+          }
+        }
+      },
+      {
         test: /\.(eot|svg|ttf|woff|otf)$/,
         exclude: /noto-sans/, // Production 에서 폰트는 common > css를 로드하기 때문에 별도로 빌드하지 않는다
         use: [

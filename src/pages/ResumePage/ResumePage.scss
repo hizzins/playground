@@ -117,6 +117,20 @@
         font-weight: normal;
       }
     }
+  }
+}
 
+.wrap-video {
+  position: relative;
+  height: 540px;
+
+  .detact-signal, video {
+    position: absolute;
+  }
+
+  .detact-signal {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

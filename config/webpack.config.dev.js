@@ -120,6 +120,16 @@ module.exports = {
         ]
       },
       {
+        test: /\.mp4/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            mimtetype: 'video/mp4',
+          }
+        }
+      },
+      {
         test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
         use: [
           {
