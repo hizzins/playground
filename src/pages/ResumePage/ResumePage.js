@@ -74,6 +74,8 @@ class ResumePage extends Component {
           아래 요약된 기술들은 업무시 주로 사용했던 기술들 요약이며 이밖에도 개인 프로젝트를 통해
           socket을 이용한 채팅프로그램 및 node, express, mongoDB를 이용하여 간단한 CRUD back-end API 개발 경험이 있습니다.
         </p>
+        <h2>github URL</h2>
+        <p>https://github.com/hizzins</p>
         <h2 className="sumary">Summary</h2>
         <h3 className="subject technologies">Technologies</h3>
         <p className="technologies-item"><span>HTML5</span> <span>CSS3</span> <span>javaScript</span> <span>jQuery</span> <span>ES6+</span> <span>React</span> <span>Redux</span> <span>Redux-thunk</span> <span>Sass</span> <span>gulp</span> <span>webpack</span></p>
