@@ -6,12 +6,14 @@ import dashboard from 'contents/video/dashboard.mp4';
 import stat from 'contents/video/stat.mp4';
 import history from 'contents/video/history.mp4';
 import schedule from 'contents/video/schedule.mp4';
+import automaticNotes from 'contents/video/automaticNotes.mp4';
 
 const ResumeImages = {
   schedule,
   history,
   dashboard,
-  stat
+  stat,
+  automaticNotes,
 };
 
 export default ResumeImages;

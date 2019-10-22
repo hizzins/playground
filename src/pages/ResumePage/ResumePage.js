@@ -116,6 +116,21 @@ class ResumePage extends Component {
               <div className="term">2014.09 ~ 재직중</div>
             </div>
             <div className="right-info">
+              <h4 className="job-subject">Remotemeeting 회의록 자동 기록
+                <Button type="transparent" size="auto" onClick={() => {onShowDialog('automaticNotes')}}>
+                  <MaterialIcon icon="image_search" size={30} />
+                </Button>
+              </h4>
+              <div className="term">2019.09 ~ 2019.10</div>
+              <p>화상회의 중 음성을 인식하여 자동으로 기록해서 회의록으로 저장해 주는 기능입니다.
+                구글 음성인식 api를 사용하여 서버에서 내려주는 text를 채팅UI로 개발했으며 애니메이션이 들어간 UI/UX로
+                사용자에게 다양한 인터페이스를 제공합니다.
+                하나의 마크업으로 열림모드와 숨김모드 두가지 UI를 제공해 유지보수에 용이하게 개발 했으며
+                모드 전환시 CSS3와 javaScript의 animationend 이벤트를 사용해 애니메이션이 자연스럽게 전환되도록 개발하였습니다.
+              </p>
+              <p className="stack">HTML5, CSS3, javascript</p>
+
+
               <h4 className="job-subject">Remote Seminar 신규개발</h4>
               <div className="term">2019.04 ~ 2019.08</div>
               <p>Remote Seminar 신규 프로젝트를 진행하여 설계부터 컴포넌트 개발에 참여하였습니다.
